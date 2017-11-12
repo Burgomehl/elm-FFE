@@ -22,15 +22,17 @@ filter: (a -> Bool) -> List a -> List a
 filter f l =
     List.foldr (\x xs -> if f(x) then x::xs else xs) [] l
 
-{-xor: List Bool -> Bool
+
+xor2 : List Bool -> Bool
+xor2 l =
+    List.length (List.filter(\x -> x == True) l)%2 == 0
+
+xor: List Bool -> Bool
 xor l =
-    if l
-    |> List.filter(\x -> x == True)
-    |> List.length l
-    % 2 == 0 then
-        True
-    else
-        False-}
+    (l
+    |> List.filter(\x->x==True)
+    |> List.length) %2 == 0
+
 
 {- auch hier würde ich die Reihenfolge als relevant ansehen -> daher foldr -}
 unzip: List (a,b) -> (List a, List b)
