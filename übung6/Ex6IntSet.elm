@@ -8,14 +8,7 @@ empty = \x -> False
 
 isElem: IntSet -> Int -> Bool
 isElem s i =
-    case s of
-        (e, x) ->
-            if e == i then
-                True
-            else
-                False
-
-
+    s i
 
 
 singleton: Int -> IntSet

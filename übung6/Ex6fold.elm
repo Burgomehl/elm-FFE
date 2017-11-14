@@ -23,6 +23,12 @@ filter f l =
     List.foldr (\x xs -> if f(x) then x::xs else xs) [] l
 
 
+{- auch hier würde ich die Reihenfolge als relevant ansehen -> daher foldr -}
+unzip: List (a,b) -> (List a, List b)
+unzip l =
+    foldr (\(a, b) (xs1,xs2) -> (a::xs1,b::xs2)) ([],[]) l
+
+
 xor2 : List Bool -> Bool
 xor2 l =
     List.length (List.filter(\x -> x == True) l)%2 == 0
@@ -32,9 +38,3 @@ xor l =
     (l
     |> List.filter(\x->x==True)
     |> List.length) %2 == 0
-
-
-{- auch hier würde ich die Reihenfolge als relevant ansehen -> daher foldr -}
-unzip: List (a,b) -> (List a, List b)
-unzip l =
-    foldr (\(a, b) (xs1,xs2) -> (a::xs1,b::xs2)) ([],[]) l
