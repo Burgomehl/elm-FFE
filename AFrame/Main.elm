@@ -25,14 +25,26 @@ update msg model =
     case msg of
         Key keycode ->
             case keycode of
-                83 -> -- s
-                    ({model | nextMoveDir = S}, Cmd.none)
                 65 -> -- a
-                    ({model | nextMoveDir = W}, Cmd.none)
-                87 -> -- w
-                    ({model | nextMoveDir = N}, Cmd.none)
+                    case model.nextMoveDir of
+                        N ->
+                            ({model | nextMoveDir = W}, Cmd.none)
+                        E ->
+                            ({model | nextMoveDir = N}, Cmd.none)
+                        S ->
+                            ({model | nextMoveDir = E}, Cmd.none)
+                        W ->
+                            ({model | nextMoveDir = S}, Cmd.none)
                 68 -> -- d
-                    ({model | nextMoveDir = E}, Cmd.none)
+                    case model.nextMoveDir of
+                        N ->
+                            ({model | nextMoveDir = E}, Cmd.none)
+                        E ->
+                            ({model | nextMoveDir = S}, Cmd.none)
+                        S ->
+                            ({model | nextMoveDir = W}, Cmd.none)
+                        W ->
+                            ({model | nextMoveDir = N}, Cmd.none)
                 _ ->
                     (model, Cmd.none)
         Next ->
@@ -68,6 +80,10 @@ removeFood (x,y) l =
         List.filter (\(x1,y1) -> not (isInRange (x,y) (x1,y1))) l
 
 
+leftField: (Float, Float) -> Model -> Bool
+leftField (x,y) model =
+    not (model.area.width/2 >= x && x >= -model.area.width/2 && model.area.depth/2 >= y && y >= -model.area.depth/2)
+
 calcNextPos: Model -> ( Model, Cmd Msg )
 calcNextPos m =
 
@@ -76,10 +92,15 @@ calcNextPos m =
                     let
                         pos = nextPos m x y
                     in
-                    if eating (x,y) m.food then
-                        ({m | snake = (pos::m.snake), food = removeFood (x,y) m.food},Cmd.none)
+                    if leftField (x,y) m then
+                        case init of
+                            (model,c) ->
+                                ({m | snake = model.snake, area = model.area, food = model.food, nextMoveDir = model.nextMoveDir}, c)
                     else
-                        ({m | snake = ((nextPos m x y)::List.take ((List.length m.snake)-1) m.snake)},Cmd.none)
+                        if eating (x,y) m.food then
+                            ({m | snake = (pos::m.snake), food = removeFood (x,y) m.food},Cmd.none)
+                        else
+                            ({m | snake = ((nextPos m x y)::List.take ((List.length m.snake)-1) m.snake)},Cmd.none)
                 Nothing ->
                     (m, Cmd.none)
 
@@ -112,7 +133,8 @@ view model =
                 []
                 ([entity [id "snake"] (generateSnake model)
                 , entity [id "food"] (generateFood model)
-                , entity [id "enviorment"] [sky [][], light [][]]]++(generateField model))
+                , entity [id "enviorment"] [sky [][], light [][]]
+                , setCamera model ]++(generateField model))
 
 main : Program Never Model Msg
 main =
