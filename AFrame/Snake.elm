@@ -4,11 +4,13 @@ import Keyboard exposing (..)
 
 type Msg =
     Next
+    |GeneratePosition
+    |SpawnFood (Float, Float)
     |Key KeyCode
 
 
 
-type alias Model = {snake: Position, area: PlayArea, food: Position, nextMoveDir: Direction}
+type alias Model = {snake: Position, area: PlayArea, food: Position, nextMoveDir: Direction, pause: Bool}
 
 type alias Position = List (Float, Float)
 

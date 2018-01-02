@@ -14,10 +14,11 @@ import Keyboard exposing (..)
 import Time exposing (..)
 import Snake exposing (..)
 import PlayArea exposing (..)
+import Random exposing (..)
 
 init : (Model, Cmd Msg)
 init =
-    ({snake = [(2,2),(3,3),(4,4)], area = {width= 100, depth = 100, wallHeight = 15}, food=[(4,4), (8,8), (-4,-4), (-8,-8)], nextMoveDir = N},Cmd.none)
+    ({snake = [(2,2),(3,3),(4,4)], area = {width= 100, depth = 100, wallHeight = 15}, food=[(4,4), (8,8), (-4,-4), (-8,-8)], nextMoveDir = N, pause = True},Cmd.none)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -25,6 +26,8 @@ update msg model =
     case msg of
         Key keycode ->
             case keycode of
+                32 -> --space
+                    ({model | pause = not model.pause}, Cmd.none)
                 65 -> -- a
                     case model.nextMoveDir of
                         N ->
@@ -49,6 +52,14 @@ update msg model =
                     (model, Cmd.none)
         Next ->
             calcNextPos model
+        SpawnFood (x,y)->
+            ({model| food = (x,y)::model.food},Cmd.none)
+        GeneratePosition ->
+            (model, generate SpawnFood randomPoint)
+
+randomPoint : Generator (Float,Float)
+randomPoint =
+    pair (float -50 50) (float -50 50)
 
 nextPos: Model -> Float -> Float -> (Float, Float)
 nextPos m x y =
@@ -82,7 +93,7 @@ removeFood (x,y) l =
 
 leftField: (Float, Float) -> Model -> Bool
 leftField (x,y) model =
-    not (model.area.width/2 >= x && x >= -model.area.width/2 && model.area.depth/2 >= y && y >= -model.area.depth/2)
+    not (model.area.width/2-1 >= x && x >= -model.area.width/2+1 && model.area.depth/2-1 >= y && y >= -model.area.depth/2+1)
 
 calcNextPos: Model -> ( Model, Cmd Msg )
 calcNextPos m =
@@ -95,7 +106,7 @@ calcNextPos m =
                     if leftField (x,y) m then
                         case init of
                             (model,c) ->
-                                ({m | snake = model.snake, area = model.area, food = model.food, nextMoveDir = model.nextMoveDir}, c)
+                                ({m | snake = model.snake, area = model.area, food = model.food, nextMoveDir = model.nextMoveDir, pause = model.pause}, c)
                     else
                         if eating (x,y) m.food then
                             ({m | snake = (pos::m.snake), food = removeFood (x,y) m.food},Cmd.none)
@@ -106,10 +117,14 @@ calcNextPos m =
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-        Sub.batch
-            [Keyboard.downs Key
-            , Time.every ( Time.second) (\_-> Next)
-            ]
+        if model.pause then
+            Keyboard.downs Key
+        else
+            Sub.batch
+                [Keyboard.downs Key
+                , Time.every ( 0.1*Time.second) (\_-> Next)
+                , Time.every ( 5*Time.second) (\_ -> GeneratePosition)
+                ]
 
 
 generateSphere: Float -> Float -> Html Msg
