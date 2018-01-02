@@ -10792,59 +10792,73 @@ var _user$project$Main$subscriptions = function (model) {
 			}
 		});
 };
-var _user$project$Main$leftField = F2(
+var _user$project$Main$hitSnake = F2(
 	function (_p8, model) {
 		var _p9 = _p8;
-		var _p11 = _p9._1;
-		var _p10 = _p9._0;
-		return !((_elm_lang$core$Native_Utils.cmp((model.area.width / 2) - 1, _p10) > -1) && ((_elm_lang$core$Native_Utils.cmp(_p10, ((0 - model.area.width) / 2) + 1) > -1) && ((_elm_lang$core$Native_Utils.cmp((model.area.depth / 2) - 1, _p11) > -1) && (_elm_lang$core$Native_Utils.cmp(_p11, ((0 - model.area.depth) / 2) + 1) > -1))));
-	});
-var _user$project$Main$isInRange = F2(
-	function (_p13, _p12) {
-		var _p14 = _p13;
-		var _p19 = _p14._1;
-		var _p18 = _p14._0;
-		var _p15 = _p12;
-		var _p17 = _p15._1;
-		var _p16 = _p15._0;
-		var range = 4;
-		return (_elm_lang$core$Native_Utils.cmp(_p16 + range, _p18) > 0) && ((_elm_lang$core$Native_Utils.cmp(_p18, _p16 - range) > 0) && ((_elm_lang$core$Native_Utils.cmp(_p17 + range, _p19) > 0) && (_elm_lang$core$Native_Utils.cmp(_p19, _p17 - range) > 0)));
-	});
-var _user$project$Main$eating = F2(
-	function (_p20, l) {
-		var _p21 = _p20;
 		return _elm_lang$core$Native_Utils.cmp(
 			_elm_lang$core$List$length(
 				A2(
 					_elm_lang$core$List$filter,
-					function (_p22) {
-						var _p23 = _p22;
+					function (_p10) {
+						var _p11 = _p10;
+						return _elm_lang$core$Native_Utils.eq(_p9._0, _p11._0) && _elm_lang$core$Native_Utils.eq(_p9._1, _p11._1);
+					},
+					model.snake)),
+			1) > 0;
+	});
+var _user$project$Main$leftField = F2(
+	function (_p12, model) {
+		var _p13 = _p12;
+		var _p15 = _p13._1;
+		var _p14 = _p13._0;
+		return !((_elm_lang$core$Native_Utils.cmp((model.area.width / 2) - 1, _p14) > -1) && ((_elm_lang$core$Native_Utils.cmp(_p14, ((0 - model.area.width) / 2) + 1) > -1) && ((_elm_lang$core$Native_Utils.cmp((model.area.depth / 2) - 1, _p15) > -1) && (_elm_lang$core$Native_Utils.cmp(_p15, ((0 - model.area.depth) / 2) + 1) > -1))));
+	});
+var _user$project$Main$isInRange = F2(
+	function (_p17, _p16) {
+		var _p18 = _p17;
+		var _p23 = _p18._1;
+		var _p22 = _p18._0;
+		var _p19 = _p16;
+		var _p21 = _p19._1;
+		var _p20 = _p19._0;
+		var range = 4;
+		return (_elm_lang$core$Native_Utils.cmp(_p20 + range, _p22) > 0) && ((_elm_lang$core$Native_Utils.cmp(_p22, _p20 - range) > 0) && ((_elm_lang$core$Native_Utils.cmp(_p21 + range, _p23) > 0) && (_elm_lang$core$Native_Utils.cmp(_p23, _p21 - range) > 0)));
+	});
+var _user$project$Main$eating = F2(
+	function (_p24, l) {
+		var _p25 = _p24;
+		return _elm_lang$core$Native_Utils.cmp(
+			_elm_lang$core$List$length(
+				A2(
+					_elm_lang$core$List$filter,
+					function (_p26) {
+						var _p27 = _p26;
 						return A2(
 							_user$project$Main$isInRange,
-							{ctor: '_Tuple2', _0: _p21._0, _1: _p21._1},
-							{ctor: '_Tuple2', _0: _p23._0, _1: _p23._1});
+							{ctor: '_Tuple2', _0: _p25._0, _1: _p25._1},
+							{ctor: '_Tuple2', _0: _p27._0, _1: _p27._1});
 					},
 					l)),
 			0) > 0;
 	});
 var _user$project$Main$removeFood = F2(
-	function (_p24, l) {
-		var _p25 = _p24;
+	function (_p28, l) {
+		var _p29 = _p28;
 		return A2(
 			_elm_lang$core$List$filter,
-			function (_p26) {
-				var _p27 = _p26;
+			function (_p30) {
+				var _p31 = _p30;
 				return !A2(
 					_user$project$Main$isInRange,
-					{ctor: '_Tuple2', _0: _p25._0, _1: _p25._1},
-					{ctor: '_Tuple2', _0: _p27._0, _1: _p27._1});
+					{ctor: '_Tuple2', _0: _p29._0, _1: _p29._1},
+					{ctor: '_Tuple2', _0: _p31._0, _1: _p31._1});
 			},
 			l);
 	});
 var _user$project$Main$nextPos = F3(
 	function (m, x, y) {
-		var _p28 = m.nextMoveDir;
-		switch (_p28.ctor) {
+		var _p32 = m.nextMoveDir;
+		switch (_p32.ctor) {
 			case 'N':
 				return {ctor: '_Tuple2', _0: x + 1, _1: y};
 			case 'E':
@@ -10899,59 +10913,74 @@ var _user$project$Main$init = {
 	_1: _elm_lang$core$Platform_Cmd$none
 };
 var _user$project$Main$calcNextPos = function (m) {
-	var _p29 = _elm_lang$core$List$head(m.snake);
-	if (_p29.ctor === 'Just') {
-		var _p33 = _p29._0._1;
-		var _p32 = _p29._0._0;
-		var pos = A3(_user$project$Main$nextPos, m, _p32, _p33);
+	var _p33 = _elm_lang$core$List$head(m.snake);
+	if (_p33.ctor === 'Just') {
+		var _p39 = _p33._0._1;
+		var _p38 = _p33._0._0;
+		var pos = A3(_user$project$Main$nextPos, m, _p38, _p39);
 		if (A2(
 			_user$project$Main$leftField,
-			{ctor: '_Tuple2', _0: _p32, _1: _p33},
+			{ctor: '_Tuple2', _0: _p38, _1: _p39},
 			m)) {
-			var _p30 = _user$project$Main$init;
-			var _p31 = _p30._0;
+			var _p34 = _user$project$Main$init;
+			var _p35 = _p34._0;
 			return {
 				ctor: '_Tuple2',
 				_0: _elm_lang$core$Native_Utils.update(
 					m,
-					{snake: _p31.snake, area: _p31.area, food: _p31.food, nextMoveDir: _p31.nextMoveDir, pause: _p31.pause}),
-				_1: _p30._1
+					{snake: _p35.snake, area: _p35.area, food: _p35.food, nextMoveDir: _p35.nextMoveDir, pause: _p35.pause}),
+				_1: _p34._1
 			};
 		} else {
 			if (A2(
-				_user$project$Main$eating,
-				{ctor: '_Tuple2', _0: _p32, _1: _p33},
-				m.food)) {
+				_user$project$Main$hitSnake,
+				{ctor: '_Tuple2', _0: _p38, _1: _p39},
+				m)) {
+				var _p36 = _user$project$Main$init;
+				var _p37 = _p36._0;
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						m,
-						{
-							snake: {ctor: '::', _0: pos, _1: m.snake},
-							food: A2(
-								_user$project$Main$removeFood,
-								{ctor: '_Tuple2', _0: _p32, _1: _p33},
-								m.food)
-						}),
-					_1: _elm_lang$core$Platform_Cmd$none
+						{snake: _p37.snake, area: _p37.area, food: _p37.food, nextMoveDir: _p37.nextMoveDir, pause: _p37.pause}),
+					_1: _p36._1
 				};
 			} else {
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						m,
-						{
-							snake: {
-								ctor: '::',
-								_0: A3(_user$project$Main$nextPos, m, _p32, _p33),
-								_1: A2(
-									_elm_lang$core$List$take,
-									_elm_lang$core$List$length(m.snake) - 1,
-									m.snake)
-							}
-						}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
+				if (A2(
+					_user$project$Main$eating,
+					{ctor: '_Tuple2', _0: _p38, _1: _p39},
+					m.food)) {
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							m,
+							{
+								snake: {ctor: '::', _0: pos, _1: m.snake},
+								food: A2(
+									_user$project$Main$removeFood,
+									{ctor: '_Tuple2', _0: _p38, _1: _p39},
+									m.food)
+							}),
+						_1: _elm_lang$core$Platform_Cmd$none
+					};
+				} else {
+					return {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Native_Utils.update(
+							m,
+							{
+								snake: {
+									ctor: '::',
+									_0: A3(_user$project$Main$nextPos, m, _p38, _p39),
+									_1: A2(
+										_elm_lang$core$List$take,
+										_elm_lang$core$List$length(m.snake) - 1,
+										m.snake)
+								}
+							}),
+						_1: _elm_lang$core$Platform_Cmd$none
+					};
+				}
 			}
 		}
 	} else {
@@ -10960,11 +10989,11 @@ var _user$project$Main$calcNextPos = function (m) {
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		var _p34 = msg;
-		switch (_p34.ctor) {
+		var _p40 = msg;
+		switch (_p40.ctor) {
 			case 'Key':
-				var _p35 = _p34._0;
-				switch (_p35) {
+				var _p41 = _p40._0;
+				switch (_p41) {
 					case 32:
 						return {
 							ctor: '_Tuple2',
@@ -10974,8 +11003,8 @@ var _user$project$Main$update = F2(
 							_1: _elm_lang$core$Platform_Cmd$none
 						};
 					case 65:
-						var _p36 = model.nextMoveDir;
-						switch (_p36.ctor) {
+						var _p42 = model.nextMoveDir;
+						switch (_p42.ctor) {
 							case 'N':
 								return {
 									ctor: '_Tuple2',
@@ -11010,8 +11039,8 @@ var _user$project$Main$update = F2(
 								};
 						}
 					case 68:
-						var _p37 = model.nextMoveDir;
-						switch (_p37.ctor) {
+						var _p43 = model.nextMoveDir;
+						switch (_p43.ctor) {
 							case 'N':
 								return {
 									ctor: '_Tuple2',
@@ -11058,7 +11087,7 @@ var _user$project$Main$update = F2(
 						{
 							food: {
 								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: _p34._0._0, _1: _p34._0._1},
+								_0: {ctor: '_Tuple2', _0: _p40._0._0, _1: _p40._0._1},
 								_1: model.food
 							}
 						}),

@@ -95,6 +95,11 @@ leftField: (Float, Float) -> Model -> Bool
 leftField (x,y) model =
     not (model.area.width/2-1 >= x && x >= -model.area.width/2+1 && model.area.depth/2-1 >= y && y >= -model.area.depth/2+1)
 
+hitSnake: (Float, Float) -> Model -> Bool
+hitSnake (x,y) model =
+    (model.snake |> List.filter (\(x1,y1) -> x == x1 && y == y1)
+                |> List.length) > 1
+
 calcNextPos: Model -> ( Model, Cmd Msg )
 calcNextPos m =
 
@@ -108,10 +113,15 @@ calcNextPos m =
                             (model,c) ->
                                 ({m | snake = model.snake, area = model.area, food = model.food, nextMoveDir = model.nextMoveDir, pause = model.pause}, c)
                     else
-                        if eating (x,y) m.food then
-                            ({m | snake = (pos::m.snake), food = removeFood (x,y) m.food},Cmd.none)
+                        if hitSnake (x,y) m then
+                            case init of
+                                (model,c) ->
+                                    ({m | snake = model.snake, area = model.area, food = model.food, nextMoveDir = model.nextMoveDir, pause = model.pause}, c)
                         else
-                            ({m | snake = ((nextPos m x y)::List.take ((List.length m.snake)-1) m.snake)},Cmd.none)
+                            if eating (x,y) m.food then
+                                ({m | snake = (pos::m.snake), food = removeFood (x,y) m.food},Cmd.none)
+                            else
+                                ({m | snake = ((nextPos m x y)::List.take ((List.length m.snake)-1) m.snake)},Cmd.none)
                 Nothing ->
                     (m, Cmd.none)
 
