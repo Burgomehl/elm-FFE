@@ -6,7 +6,7 @@ import Html exposing (..)
 import AFrame exposing (..)
 import AFrame.Primitives.Camera exposing (..)
 import AFrame.Primitives.Attributes exposing (..)
-import AFrame.Extra.Physics exposing (dynamicBody)
+import AFrame.Extra.Physics exposing (kinematicBody, staticBody)
 import AFrame.Animations exposing (..)
 import Color exposing (rgb)
 import Keyboard exposing (..)
@@ -124,6 +124,7 @@ generateWall (x,y,z) (w,h,d)=
         -- ansonsten sind die Wände auch Durchsichtig
         , transparent False
         , opacity 1
+        , staticBody
         ]
         []
 
@@ -134,22 +135,24 @@ generateField m =
         , width m.area.width
         , height m.area.depth
         , color (rgb 90 99 120)
+        , staticBody
         ]
         []
-    --, (generateWall (0,0,-m.area.depth/2) (m.area.width,m.area.wallHeight,1))
-    --, (generateWall (m.area.width/2,0,0) (1,m.area.wallHeight,round m.area.depth))
-    --, (generateWall (-m.area.width/2,0,0) (1,m.area.wallHeight,round m.area.depth))
-    --, (generateWall (0,0,m.area.depth/2) (m.area.width,m.area.wallHeight,1))
+    , (generateWall (0,0,-m.area.depth/2) (m.area.width,m.area.wallHeight,1))
+    , (generateWall (m.area.width/2,0,0) (1,m.area.wallHeight,round m.area.depth))
+    , (generateWall (-m.area.width/2,0,0) (1,m.area.wallHeight,round m.area.depth))
+    , (generateWall (0,0,m.area.depth/2) (m.area.width,m.area.wallHeight,1))
      ]
 
 generateSphere: Float -> Float -> Html Msg
 generateSphere x y =
-     sphere
-        [ position x 1.25 y
-        , radius 1.25
+     entity [ position x 1.25 y
+     , kinematicBody
+     ] [sphere
+        [ radius 1.25
         , color (rgb 240 173 150)
         ]
-        []
+        []]
 
 generateSnake: Model -> List (Html Msg)
 generateSnake m =
@@ -157,7 +160,7 @@ generateSnake m =
 
 generateFoodTile: Float -> Float -> Html Msg
 generateFoodTile x y =
-     box
+     entity [] [box
         [position x 1 y
         , radius 0.5
         , width 1
@@ -175,7 +178,7 @@ generateFoodTile x y =
             , repeat "infinite"
             ]
             []
-        ]
+        ]]
 
 generateFood: Model -> List (Html Msg)
 generateFood m =
@@ -200,27 +203,30 @@ setCamera m =
             camera [
                 --lookControlsEnabled False
                 wasdControlsEnabled False
-                ,position x 1.25 y
-                ,getRotation m
+                , position x 10.25 y
+                , rotation 0 0 90
+                , kinematicBody
             ][]
         Nothing ->
             camera [
                 position 0 1.25 0
                 ,getRotation m
             ][]
+
 view : Model -> Html Msg
 view model =
 {-verhält sich richtig merkwürdig ... Elemente bleiben an manchen Stellen hängen mauern und Boden bewegen sich mit ...-}
         scene
                 []
-                ([ sky
+                ([]
+                |> List.append [ sky
                     []
                     []
                     , setCamera model
-                ]++(generateField model)
-                ++(generateSnake model)
-                ++(generateFood model)
-                )
+                ]
+                |> List.append (generateField model)
+                |> List.append (generateFood model)
+                |> List.append (generateSnake model))
 
 main : Program Never Model Msg
 main =
