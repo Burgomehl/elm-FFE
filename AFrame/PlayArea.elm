@@ -25,7 +25,7 @@ generateWall (x,y,z) (w,h,d)=
         ]
         []]
 
-generateField: Model -> List (Html Msg)
+generateField: GameModel -> List (Html Msg)
 generateField m =
     [entity [id "floor", position 0 0 0] [ plane
         [ rotation -90 0 0

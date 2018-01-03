@@ -10,7 +10,10 @@ type Msg =
 
 
 
-type alias Model = {snake: Position, area: PlayArea, food: Position, nextMoveDir: Direction, pause: Bool}
+type Model = Start
+            |Play GameModel
+
+type alias GameModel = {snake: Position, area: PlayArea, food: Position, nextMoveDir: Direction, pause: Bool}
 
 type alias Position = List (Float, Float)
 

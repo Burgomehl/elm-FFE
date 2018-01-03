@@ -10368,7 +10368,7 @@ var _user$project$AFrame_Primitives_Light$Hemisphere = {ctor: 'Hemisphere'};
 var _user$project$AFrame_Primitives_Light$Directional = {ctor: 'Directional'};
 var _user$project$AFrame_Primitives_Light$Ambient = {ctor: 'Ambient'};
 
-var _user$project$Snake$Model = F5(
+var _user$project$Snake$GameModel = F5(
 	function (a, b, c, d, e) {
 		return {snake: a, area: b, food: c, nextMoveDir: d, pause: e};
 	});
@@ -10384,6 +10384,10 @@ var _user$project$Snake$SpawnFood = function (a) {
 };
 var _user$project$Snake$GeneratePosition = {ctor: 'GeneratePosition'};
 var _user$project$Snake$Next = {ctor: 'Next'};
+var _user$project$Snake$Play = function (a) {
+	return {ctor: 'Play', _0: a};
+};
+var _user$project$Snake$Start = {ctor: 'Start'};
 var _user$project$Snake$S = {ctor: 'S'};
 var _user$project$Snake$W = {ctor: 'W'};
 var _user$project$Snake$E = {ctor: 'E'};
@@ -10541,6 +10545,106 @@ var _user$project$PlayArea$generateField = function (m) {
 		}
 	};
 };
+
+var _user$project$StartPage$generatePage = A2(
+	_elm_lang$html$Html$div,
+	{ctor: '[]'},
+	{
+		ctor: '::',
+		_0: A2(
+			_elm_lang$html$Html$div,
+			{ctor: '[]'},
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html$text('SnakeVR'),
+				_1: {ctor: '[]'}
+			}),
+		_1: {
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$button,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html$text('Einzelspieler'),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$button,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$disabled(true),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html$text('Mehrspieler'),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$button,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$disabled(true),
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text('Musik aus'),
+									_1: {ctor: '[]'}
+								}),
+							_1: {ctor: '[]'}
+						}),
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$div,
+							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$button,
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$disabled(true),
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text('Skin'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		}
+	});
 
 var _user$project$Main$getRotation = function (m) {
 	var _p0 = m.nextMoveDir;
@@ -10720,167 +10824,178 @@ var _user$project$Main$generateSnake = function (m) {
 		m.snake);
 };
 var _user$project$Main$view = function (model) {
-	return A2(
-		_user$project$AFrame$scene,
-		{ctor: '[]'},
-		A2(
-			_elm_lang$core$Basics_ops['++'],
-			{
-				ctor: '::',
-				_0: A2(
-					_user$project$AFrame$entity,
-					{
-						ctor: '::',
-						_0: _user$project$AFrame_Primitives_Attributes$id('snake'),
-						_1: {ctor: '[]'}
-					},
-					_user$project$Main$generateSnake(model)),
-				_1: {
+	var _p6 = model;
+	if (_p6.ctor === 'Start') {
+		return _user$project$StartPage$generatePage;
+	} else {
+		var _p7 = _p6._0;
+		return A2(
+			_user$project$AFrame$scene,
+			{ctor: '[]'},
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				{
 					ctor: '::',
 					_0: A2(
 						_user$project$AFrame$entity,
 						{
 							ctor: '::',
-							_0: _user$project$AFrame_Primitives_Attributes$id('food'),
+							_0: _user$project$AFrame_Primitives_Attributes$id('snake'),
 							_1: {ctor: '[]'}
 						},
-						_user$project$Main$generateFood(model)),
+						_user$project$Main$generateSnake(_p7)),
 					_1: {
 						ctor: '::',
 						_0: A2(
 							_user$project$AFrame$entity,
 							{
 								ctor: '::',
-								_0: _user$project$AFrame_Primitives_Attributes$id('enviorment'),
+								_0: _user$project$AFrame_Primitives_Attributes$id('food'),
 								_1: {ctor: '[]'}
 							},
-							{
-								ctor: '::',
-								_0: A2(
-									_user$project$AFrame_Primitives$sky,
-									{
-										ctor: '::',
-										_0: _user$project$AFrame_Primitives_Attributes$src('https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/envmap/2294472375_24a3b8ef46_o.jpg'),
-										_1: {ctor: '[]'}
-									},
-									{ctor: '[]'}),
-								_1: {
+							_user$project$Main$generateFood(_p7)),
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_user$project$AFrame$entity,
+								{
+									ctor: '::',
+									_0: _user$project$AFrame_Primitives_Attributes$id('enviorment'),
+									_1: {ctor: '[]'}
+								},
+								{
 									ctor: '::',
 									_0: A2(
-										_user$project$AFrame_Primitives_Light$light,
+										_user$project$AFrame_Primitives$sky,
 										{
 											ctor: '::',
-											_0: _user$project$AFrame_Primitives_Light$type_(_user$project$AFrame_Primitives_Light$Hemisphere),
+											_0: _user$project$AFrame_Primitives_Attributes$src('https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/envmap/2294472375_24a3b8ef46_o.jpg'),
 											_1: {ctor: '[]'}
 										},
 										{ctor: '[]'}),
-									_1: {ctor: '[]'}
-								}
-							}),
-						_1: {
-							ctor: '::',
-							_0: _user$project$Main$setCamera(model),
-							_1: {ctor: '[]'}
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_user$project$AFrame_Primitives_Light$light,
+											{
+												ctor: '::',
+												_0: _user$project$AFrame_Primitives_Light$type_(_user$project$AFrame_Primitives_Light$Hemisphere),
+												_1: {ctor: '[]'}
+											},
+											{ctor: '[]'}),
+										_1: {ctor: '[]'}
+									}
+								}),
+							_1: {
+								ctor: '::',
+								_0: _user$project$Main$setCamera(_p7),
+								_1: {ctor: '[]'}
+							}
 						}
 					}
-				}
-			},
-			_user$project$PlayArea$generateField(model)));
+				},
+				_user$project$PlayArea$generateField(_p7)));
+	}
 };
 var _user$project$Main$subscriptions = function (model) {
-	return model.pause ? _elm_lang$keyboard$Keyboard$downs(_user$project$Snake$Key) : _elm_lang$core$Platform_Sub$batch(
-		{
-			ctor: '::',
-			_0: _elm_lang$keyboard$Keyboard$downs(_user$project$Snake$Key),
-			_1: {
+	var _p8 = model;
+	if (_p8.ctor === 'Start') {
+		return _elm_lang$keyboard$Keyboard$downs(_user$project$Snake$Key);
+	} else {
+		return _p8._0.pause ? _elm_lang$keyboard$Keyboard$downs(_user$project$Snake$Key) : _elm_lang$core$Platform_Sub$batch(
+			{
 				ctor: '::',
-				_0: A2(
-					_elm_lang$core$Time$every,
-					2.0e-2 * _elm_lang$core$Time$second,
-					function (_p6) {
-						return _user$project$Snake$Next;
-					}),
+				_0: _elm_lang$keyboard$Keyboard$downs(_user$project$Snake$Key),
 				_1: {
 					ctor: '::',
 					_0: A2(
 						_elm_lang$core$Time$every,
-						_elm_lang$core$Time$second,
-						function (_p7) {
-							return _user$project$Snake$GeneratePosition;
+						2.0e-2 * _elm_lang$core$Time$second,
+						function (_p9) {
+							return _user$project$Snake$Next;
 						}),
-					_1: {ctor: '[]'}
+					_1: {
+						ctor: '::',
+						_0: A2(
+							_elm_lang$core$Time$every,
+							_elm_lang$core$Time$second,
+							function (_p10) {
+								return _user$project$Snake$GeneratePosition;
+							}),
+						_1: {ctor: '[]'}
+					}
 				}
-			}
-		});
+			});
+	}
 };
 var _user$project$Main$hitSnake = F2(
-	function (_p8, model) {
-		var _p9 = _p8;
+	function (_p11, model) {
+		var _p12 = _p11;
 		return _elm_lang$core$Native_Utils.cmp(
 			_elm_lang$core$List$length(
 				A2(
 					_elm_lang$core$List$filter,
-					function (_p10) {
-						var _p11 = _p10;
-						return _elm_lang$core$Native_Utils.eq(_p9._0, _p11._0) && _elm_lang$core$Native_Utils.eq(_p9._1, _p11._1);
+					function (_p13) {
+						var _p14 = _p13;
+						return _elm_lang$core$Native_Utils.eq(_p12._0, _p14._0) && _elm_lang$core$Native_Utils.eq(_p12._1, _p14._1);
 					},
 					model.snake)),
 			1) > 0;
 	});
 var _user$project$Main$leftField = F2(
-	function (_p12, model) {
-		var _p13 = _p12;
-		var _p15 = _p13._1;
-		var _p14 = _p13._0;
-		return !((_elm_lang$core$Native_Utils.cmp((model.area.width / 2) - 1, _p14) > -1) && ((_elm_lang$core$Native_Utils.cmp(_p14, ((0 - model.area.width) / 2) + 1) > -1) && ((_elm_lang$core$Native_Utils.cmp((model.area.depth / 2) - 1, _p15) > -1) && (_elm_lang$core$Native_Utils.cmp(_p15, ((0 - model.area.depth) / 2) + 1) > -1))));
+	function (_p15, model) {
+		var _p16 = _p15;
+		var _p18 = _p16._1;
+		var _p17 = _p16._0;
+		return !((_elm_lang$core$Native_Utils.cmp((model.area.width / 2) - 1, _p17) > -1) && ((_elm_lang$core$Native_Utils.cmp(_p17, ((0 - model.area.width) / 2) + 1) > -1) && ((_elm_lang$core$Native_Utils.cmp((model.area.depth / 2) - 1, _p18) > -1) && (_elm_lang$core$Native_Utils.cmp(_p18, ((0 - model.area.depth) / 2) + 1) > -1))));
 	});
 var _user$project$Main$isInRange = F2(
-	function (_p17, _p16) {
-		var _p18 = _p17;
-		var _p23 = _p18._1;
-		var _p22 = _p18._0;
-		var _p19 = _p16;
-		var _p21 = _p19._1;
-		var _p20 = _p19._0;
+	function (_p20, _p19) {
+		var _p21 = _p20;
+		var _p26 = _p21._1;
+		var _p25 = _p21._0;
+		var _p22 = _p19;
+		var _p24 = _p22._1;
+		var _p23 = _p22._0;
 		var range = 4;
-		return (_elm_lang$core$Native_Utils.cmp(_p20 + range, _p22) > 0) && ((_elm_lang$core$Native_Utils.cmp(_p22, _p20 - range) > 0) && ((_elm_lang$core$Native_Utils.cmp(_p21 + range, _p23) > 0) && (_elm_lang$core$Native_Utils.cmp(_p23, _p21 - range) > 0)));
+		return (_elm_lang$core$Native_Utils.cmp(_p23 + range, _p25) > 0) && ((_elm_lang$core$Native_Utils.cmp(_p25, _p23 - range) > 0) && ((_elm_lang$core$Native_Utils.cmp(_p24 + range, _p26) > 0) && (_elm_lang$core$Native_Utils.cmp(_p26, _p24 - range) > 0)));
 	});
 var _user$project$Main$eating = F2(
-	function (_p24, l) {
-		var _p25 = _p24;
+	function (_p27, l) {
+		var _p28 = _p27;
 		return _elm_lang$core$Native_Utils.cmp(
 			_elm_lang$core$List$length(
 				A2(
 					_elm_lang$core$List$filter,
-					function (_p26) {
-						var _p27 = _p26;
+					function (_p29) {
+						var _p30 = _p29;
 						return A2(
 							_user$project$Main$isInRange,
-							{ctor: '_Tuple2', _0: _p25._0, _1: _p25._1},
-							{ctor: '_Tuple2', _0: _p27._0, _1: _p27._1});
+							{ctor: '_Tuple2', _0: _p28._0, _1: _p28._1},
+							{ctor: '_Tuple2', _0: _p30._0, _1: _p30._1});
 					},
 					l)),
 			0) > 0;
 	});
 var _user$project$Main$removeFood = F2(
-	function (_p28, l) {
-		var _p29 = _p28;
+	function (_p31, l) {
+		var _p32 = _p31;
 		return A2(
 			_elm_lang$core$List$filter,
-			function (_p30) {
-				var _p31 = _p30;
+			function (_p33) {
+				var _p34 = _p33;
 				return !A2(
 					_user$project$Main$isInRange,
-					{ctor: '_Tuple2', _0: _p29._0, _1: _p29._1},
-					{ctor: '_Tuple2', _0: _p31._0, _1: _p31._1});
+					{ctor: '_Tuple2', _0: _p32._0, _1: _p32._1},
+					{ctor: '_Tuple2', _0: _p34._0, _1: _p34._1});
 			},
 			l);
 	});
 var _user$project$Main$nextPos = F3(
 	function (m, x, y) {
 		var moveD = 0.5;
-		var _p32 = m.nextMoveDir;
-		switch (_p32.ctor) {
+		var _p35 = m.nextMoveDir;
+		switch (_p35.ctor) {
 			case 'N':
 				return {ctor: '_Tuple2', _0: x + moveD, _1: y};
 			case 'E':
@@ -10891,243 +11006,257 @@ var _user$project$Main$nextPos = F3(
 				return {ctor: '_Tuple2', _0: x, _1: y - moveD};
 		}
 	});
+var _user$project$Main$calcNextPos = function (m) {
+	var _p36 = _elm_lang$core$List$head(m.snake);
+	if (_p36.ctor === 'Just') {
+		var _p38 = _p36._0._1;
+		var _p37 = _p36._0._0;
+		var pos = A3(_user$project$Main$nextPos, m, _p37, _p38);
+		return A2(
+			_user$project$Main$leftField,
+			{ctor: '_Tuple2', _0: _p37, _1: _p38},
+			m) ? {ctor: '_Tuple2', _0: _user$project$Snake$Start, _1: _elm_lang$core$Platform_Cmd$none} : (A2(
+			_user$project$Main$hitSnake,
+			{ctor: '_Tuple2', _0: _p37, _1: _p38},
+			m) ? {ctor: '_Tuple2', _0: _user$project$Snake$Start, _1: _elm_lang$core$Platform_Cmd$none} : (A2(
+			_user$project$Main$eating,
+			{ctor: '_Tuple2', _0: _p37, _1: _p38},
+			m.food) ? {
+			ctor: '_Tuple2',
+			_0: _user$project$Snake$Play(
+				_elm_lang$core$Native_Utils.update(
+					m,
+					{
+						snake: {ctor: '::', _0: pos, _1: m.snake},
+						food: A2(
+							_user$project$Main$removeFood,
+							{ctor: '_Tuple2', _0: _p37, _1: _p38},
+							m.food)
+					})),
+			_1: _elm_lang$core$Platform_Cmd$none
+		} : {
+			ctor: '_Tuple2',
+			_0: _user$project$Snake$Play(
+				_elm_lang$core$Native_Utils.update(
+					m,
+					{
+						snake: {
+							ctor: '::',
+							_0: A3(_user$project$Main$nextPos, m, _p37, _p38),
+							_1: A2(
+								_elm_lang$core$List$take,
+								_elm_lang$core$List$length(m.snake) - 1,
+								m.snake)
+						}
+					})),
+			_1: _elm_lang$core$Platform_Cmd$none
+		}));
+	} else {
+		return {
+			ctor: '_Tuple2',
+			_0: _user$project$Snake$Play(m),
+			_1: _elm_lang$core$Platform_Cmd$none
+		};
+	}
+};
 var _user$project$Main$randomPoint = function (m) {
 	return A2(
 		_elm_lang$core$Random$pair,
 		A2(_elm_lang$core$Random$float, ((0 - m.area.width) / 2) + 2, (m.area.depth / 2) - 2),
 		A2(_elm_lang$core$Random$float, ((0 - m.area.width) / 2) + 2, (m.area.depth / 2) - 2));
 };
-var _user$project$Main$init = {
-	ctor: '_Tuple2',
-	_0: {
-		snake: {
+var _user$project$Main$startGame = {
+	snake: {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 2, _1: 2},
+		_1: {
 			ctor: '::',
-			_0: {ctor: '_Tuple2', _0: 2, _1: 2},
+			_0: {ctor: '_Tuple2', _0: 3, _1: 3},
 			_1: {
 				ctor: '::',
-				_0: {ctor: '_Tuple2', _0: 3, _1: 3},
+				_0: {ctor: '_Tuple2', _0: 4, _1: 4},
+				_1: {ctor: '[]'}
+			}
+		}
+	},
+	area: {width: 100, depth: 100, wallHeight: 15},
+	food: {
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 4, _1: 4},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 8, _1: 8},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: -4, _1: -4},
 				_1: {
 					ctor: '::',
-					_0: {ctor: '_Tuple2', _0: 4, _1: 4},
+					_0: {ctor: '_Tuple2', _0: -8, _1: -8},
 					_1: {ctor: '[]'}
 				}
 			}
-		},
-		area: {width: 100, depth: 100, wallHeight: 15},
-		food: {
-			ctor: '::',
-			_0: {ctor: '_Tuple2', _0: 4, _1: 4},
-			_1: {
-				ctor: '::',
-				_0: {ctor: '_Tuple2', _0: 8, _1: 8},
-				_1: {
-					ctor: '::',
-					_0: {ctor: '_Tuple2', _0: -4, _1: -4},
-					_1: {
-						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: -8, _1: -8},
-						_1: {ctor: '[]'}
-					}
-				}
-			}
-		},
-		nextMoveDir: _user$project$Snake$N,
-		pause: true
-	},
-	_1: _elm_lang$core$Platform_Cmd$none
-};
-var _user$project$Main$calcNextPos = function (m) {
-	var _p33 = _elm_lang$core$List$head(m.snake);
-	if (_p33.ctor === 'Just') {
-		var _p39 = _p33._0._1;
-		var _p38 = _p33._0._0;
-		var pos = A3(_user$project$Main$nextPos, m, _p38, _p39);
-		if (A2(
-			_user$project$Main$leftField,
-			{ctor: '_Tuple2', _0: _p38, _1: _p39},
-			m)) {
-			var _p34 = _user$project$Main$init;
-			var _p35 = _p34._0;
-			return {
-				ctor: '_Tuple2',
-				_0: _elm_lang$core$Native_Utils.update(
-					m,
-					{snake: _p35.snake, area: _p35.area, food: _p35.food, nextMoveDir: _p35.nextMoveDir, pause: _p35.pause}),
-				_1: _p34._1
-			};
-		} else {
-			if (A2(
-				_user$project$Main$hitSnake,
-				{ctor: '_Tuple2', _0: _p38, _1: _p39},
-				m)) {
-				var _p36 = _user$project$Main$init;
-				var _p37 = _p36._0;
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						m,
-						{snake: _p37.snake, area: _p37.area, food: _p37.food, nextMoveDir: _p37.nextMoveDir, pause: _p37.pause}),
-					_1: _p36._1
-				};
-			} else {
-				if (A2(
-					_user$project$Main$eating,
-					{ctor: '_Tuple2', _0: _p38, _1: _p39},
-					m.food)) {
-					return {
-						ctor: '_Tuple2',
-						_0: _elm_lang$core$Native_Utils.update(
-							m,
-							{
-								snake: {ctor: '::', _0: pos, _1: m.snake},
-								food: A2(
-									_user$project$Main$removeFood,
-									{ctor: '_Tuple2', _0: _p38, _1: _p39},
-									m.food)
-							}),
-						_1: _elm_lang$core$Platform_Cmd$none
-					};
-				} else {
-					return {
-						ctor: '_Tuple2',
-						_0: _elm_lang$core$Native_Utils.update(
-							m,
-							{
-								snake: {
-									ctor: '::',
-									_0: A3(_user$project$Main$nextPos, m, _p38, _p39),
-									_1: A2(
-										_elm_lang$core$List$take,
-										_elm_lang$core$List$length(m.snake) - 1,
-										m.snake)
-								}
-							}),
-						_1: _elm_lang$core$Platform_Cmd$none
-					};
-				}
-			}
 		}
-	} else {
-		return {ctor: '_Tuple2', _0: m, _1: _elm_lang$core$Platform_Cmd$none};
-	}
+	},
+	nextMoveDir: _user$project$Snake$N,
+	pause: true
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		var _p40 = msg;
-		switch (_p40.ctor) {
-			case 'Key':
-				var _p41 = _p40._0;
-				switch (_p41) {
-					case 32:
+		var _p39 = model;
+		if (_p39.ctor === 'Start') {
+			var _p40 = msg;
+			switch (_p40.ctor) {
+				case 'Key':
+					var _p41 = _p40._0;
+					if (_p41 === 32) {
 						return {
 							ctor: '_Tuple2',
-							_0: _elm_lang$core$Native_Utils.update(
-								model,
-								{pause: !model.pause}),
+							_0: _user$project$Snake$Play(_user$project$Main$startGame),
 							_1: _elm_lang$core$Platform_Cmd$none
 						};
-					case 65:
-						var _p42 = model.nextMoveDir;
-						switch (_p42.ctor) {
-							case 'N':
-								return {
-									ctor: '_Tuple2',
-									_0: _elm_lang$core$Native_Utils.update(
-										model,
-										{nextMoveDir: _user$project$Snake$W}),
-									_1: _elm_lang$core$Platform_Cmd$none
-								};
-							case 'E':
-								return {
-									ctor: '_Tuple2',
-									_0: _elm_lang$core$Native_Utils.update(
-										model,
-										{nextMoveDir: _user$project$Snake$N}),
-									_1: _elm_lang$core$Platform_Cmd$none
-								};
-							case 'S':
-								return {
-									ctor: '_Tuple2',
-									_0: _elm_lang$core$Native_Utils.update(
-										model,
-										{nextMoveDir: _user$project$Snake$E}),
-									_1: _elm_lang$core$Platform_Cmd$none
-								};
-							default:
-								return {
-									ctor: '_Tuple2',
-									_0: _elm_lang$core$Native_Utils.update(
-										model,
-										{nextMoveDir: _user$project$Snake$S}),
-									_1: _elm_lang$core$Platform_Cmd$none
-								};
-						}
-					case 68:
-						var _p43 = model.nextMoveDir;
-						switch (_p43.ctor) {
-							case 'N':
-								return {
-									ctor: '_Tuple2',
-									_0: _elm_lang$core$Native_Utils.update(
-										model,
-										{nextMoveDir: _user$project$Snake$E}),
-									_1: _elm_lang$core$Platform_Cmd$none
-								};
-							case 'E':
-								return {
-									ctor: '_Tuple2',
-									_0: _elm_lang$core$Native_Utils.update(
-										model,
-										{nextMoveDir: _user$project$Snake$S}),
-									_1: _elm_lang$core$Platform_Cmd$none
-								};
-							case 'S':
-								return {
-									ctor: '_Tuple2',
-									_0: _elm_lang$core$Native_Utils.update(
-										model,
-										{nextMoveDir: _user$project$Snake$W}),
-									_1: _elm_lang$core$Platform_Cmd$none
-								};
-							default:
-								return {
-									ctor: '_Tuple2',
-									_0: _elm_lang$core$Native_Utils.update(
-										model,
-										{nextMoveDir: _user$project$Snake$N}),
-									_1: _elm_lang$core$Platform_Cmd$none
-								};
-						}
-					default:
+					} else {
 						return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-				}
-			case 'Next':
-				return _user$project$Main$calcNextPos(model);
-			case 'SpawnFood':
-				return {
-					ctor: '_Tuple2',
-					_0: _elm_lang$core$Native_Utils.update(
-						model,
-						{
-							food: {
-								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: _p40._0._0, _1: _p40._0._1},
-								_1: model.food
+					}
+				case 'Next':
+					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+				case 'SpawnFood':
+					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+				default:
+					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+			}
+		} else {
+			var _p46 = _p39._0;
+			var _p42 = msg;
+			switch (_p42.ctor) {
+				case 'Key':
+					var _p43 = _p42._0;
+					switch (_p43) {
+						case 32:
+							return {
+								ctor: '_Tuple2',
+								_0: _user$project$Snake$Play(
+									_elm_lang$core$Native_Utils.update(
+										_p46,
+										{pause: !_p46.pause})),
+								_1: _elm_lang$core$Platform_Cmd$none
+							};
+						case 65:
+							var _p44 = _p46.nextMoveDir;
+							switch (_p44.ctor) {
+								case 'N':
+									return {
+										ctor: '_Tuple2',
+										_0: _user$project$Snake$Play(
+											_elm_lang$core$Native_Utils.update(
+												_p46,
+												{nextMoveDir: _user$project$Snake$W})),
+										_1: _elm_lang$core$Platform_Cmd$none
+									};
+								case 'E':
+									return {
+										ctor: '_Tuple2',
+										_0: _user$project$Snake$Play(
+											_elm_lang$core$Native_Utils.update(
+												_p46,
+												{nextMoveDir: _user$project$Snake$N})),
+										_1: _elm_lang$core$Platform_Cmd$none
+									};
+								case 'S':
+									return {
+										ctor: '_Tuple2',
+										_0: _user$project$Snake$Play(
+											_elm_lang$core$Native_Utils.update(
+												_p46,
+												{nextMoveDir: _user$project$Snake$E})),
+										_1: _elm_lang$core$Platform_Cmd$none
+									};
+								default:
+									return {
+										ctor: '_Tuple2',
+										_0: _user$project$Snake$Play(
+											_elm_lang$core$Native_Utils.update(
+												_p46,
+												{nextMoveDir: _user$project$Snake$S})),
+										_1: _elm_lang$core$Platform_Cmd$none
+									};
 							}
-						}),
-					_1: _elm_lang$core$Platform_Cmd$none
-				};
-			default:
-				return {
-					ctor: '_Tuple2',
-					_0: model,
-					_1: A2(
-						_elm_lang$core$Random$generate,
-						_user$project$Snake$SpawnFood,
-						_user$project$Main$randomPoint(model))
-				};
+						case 68:
+							var _p45 = _p46.nextMoveDir;
+							switch (_p45.ctor) {
+								case 'N':
+									return {
+										ctor: '_Tuple2',
+										_0: _user$project$Snake$Play(
+											_elm_lang$core$Native_Utils.update(
+												_p46,
+												{nextMoveDir: _user$project$Snake$E})),
+										_1: _elm_lang$core$Platform_Cmd$none
+									};
+								case 'E':
+									return {
+										ctor: '_Tuple2',
+										_0: _user$project$Snake$Play(
+											_elm_lang$core$Native_Utils.update(
+												_p46,
+												{nextMoveDir: _user$project$Snake$S})),
+										_1: _elm_lang$core$Platform_Cmd$none
+									};
+								case 'S':
+									return {
+										ctor: '_Tuple2',
+										_0: _user$project$Snake$Play(
+											_elm_lang$core$Native_Utils.update(
+												_p46,
+												{nextMoveDir: _user$project$Snake$W})),
+										_1: _elm_lang$core$Platform_Cmd$none
+									};
+								default:
+									return {
+										ctor: '_Tuple2',
+										_0: _user$project$Snake$Play(
+											_elm_lang$core$Native_Utils.update(
+												_p46,
+												{nextMoveDir: _user$project$Snake$N})),
+										_1: _elm_lang$core$Platform_Cmd$none
+									};
+							}
+						default:
+							return {
+								ctor: '_Tuple2',
+								_0: _user$project$Snake$Play(_p46),
+								_1: _elm_lang$core$Platform_Cmd$none
+							};
+					}
+				case 'Next':
+					return _user$project$Main$calcNextPos(_p46);
+				case 'SpawnFood':
+					return {
+						ctor: '_Tuple2',
+						_0: _user$project$Snake$Play(
+							_elm_lang$core$Native_Utils.update(
+								_p46,
+								{
+									food: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: _p42._0._0, _1: _p42._0._1},
+										_1: _p46.food
+									}
+								})),
+						_1: _elm_lang$core$Platform_Cmd$none
+					};
+				default:
+					return {
+						ctor: '_Tuple2',
+						_0: _user$project$Snake$Play(_p46),
+						_1: A2(
+							_elm_lang$core$Random$generate,
+							_user$project$Snake$SpawnFood,
+							_user$project$Main$randomPoint(_p46))
+					};
+			}
 		}
 	});
+var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Snake$Start, _1: _elm_lang$core$Platform_Cmd$none};
 var _user$project$Main$main = _elm_lang$html$Html$program(
 	{init: _user$project$Main$init, view: _user$project$Main$view, subscriptions: _user$project$Main$subscriptions, update: _user$project$Main$update})();
 

@@ -4,6 +4,7 @@ import Color exposing (rgb)
 import AFrame.Primitives exposing (sphere, box, cylinder, plane, sky)
 import AFrame.Primitives.Light exposing (light)
 import Html exposing (..)
+import Html.Attributes exposing (disabled)
 import AFrame exposing (..)
 import AFrame.Primitives.Camera exposing (..)
 import AFrame.Primitives.Attributes exposing (..)
@@ -16,53 +17,73 @@ import Time exposing (..)
 import Snake exposing (..)
 import PlayArea exposing (..)
 import Random exposing (..)
+import StartPage exposing (..)
 
 init : (Model, Cmd Msg)
 init =
-    ({snake = [(2,2),(3,3),(4,4)], area = {width= 100, depth = 100, wallHeight = 15}, food=[(4,4), (8,8), (-4,-4), (-8,-8)], nextMoveDir = N, pause = True},Cmd.none)
+    (Start,Cmd.none)
 
+
+startGame: (GameModel)
+startGame =
+    {snake = [(2,2),(3,3),(4,4)], area = {width= 100, depth = 100, wallHeight = 15}, food=[(4,4), (8,8), (-4,-4), (-8,-8)], nextMoveDir = N, pause = True}
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    case msg of
-        Key keycode ->
-            case keycode of
-               32 -> --space
-                    ({model | pause = not model.pause}, Cmd.none)
-               65 -> -- a
-                    case model.nextMoveDir of
-                        N ->
-                            ({model | nextMoveDir = W}, Cmd.none)
-                        E ->
-                            ({model | nextMoveDir = N}, Cmd.none)
-                        S ->
-                            ({model | nextMoveDir = E}, Cmd.none)
-                        W ->
-                            ({model | nextMoveDir = S}, Cmd.none)
-               68 -> -- d
-                    case model.nextMoveDir of
-                        N ->
-                            ({model | nextMoveDir = E}, Cmd.none)
-                        E ->
-                            ({model | nextMoveDir = S}, Cmd.none)
-                        S ->
-                            ({model | nextMoveDir = W}, Cmd.none)
-                        W ->
-                            ({model | nextMoveDir = N}, Cmd.none)
-               _ ->
-                    (model, Cmd.none)
-        Next ->
-            calcNextPos model
-        SpawnFood (x,y)->
-            ({model| food = (x,y)::model.food},Cmd.none)
-        GeneratePosition ->
-            (model, generate SpawnFood (randomPoint model))
+    case model of
+        Start ->
+            case msg of
+                    Key keycode ->
+                        case keycode of
+                           32 -> --space
+                                (Play startGame, Cmd.none)
+                           _ -> (model, Cmd.none)
+                    Next ->
+                        (model, Cmd.none)
+                    SpawnFood (x,y)->
+                        (model, Cmd.none)
+                    GeneratePosition ->
+                        (model, Cmd.none)
+        Play gameModel ->
+            case msg of
+                Key keycode ->
+                    case keycode of
+                       32 -> --space
+                            (Play {gameModel | pause = not gameModel.pause}, Cmd.none)
+                       65 -> -- a
+                            case gameModel.nextMoveDir of
+                                N ->
+                                    (Play {gameModel | nextMoveDir = W}, Cmd.none)
+                                E ->
+                                    (Play {gameModel | nextMoveDir = N}, Cmd.none)
+                                S ->
+                                    (Play {gameModel | nextMoveDir = E}, Cmd.none)
+                                W ->
+                                    (Play {gameModel | nextMoveDir = S}, Cmd.none)
+                       68 -> -- d
+                            case gameModel.nextMoveDir of
+                                N ->
+                                    (Play {gameModel | nextMoveDir = E}, Cmd.none)
+                                E ->
+                                    (Play {gameModel | nextMoveDir = S}, Cmd.none)
+                                S ->
+                                    (Play {gameModel | nextMoveDir = W}, Cmd.none)
+                                W ->
+                                    (Play {gameModel | nextMoveDir = N}, Cmd.none)
+                       _ ->
+                            (Play gameModel, Cmd.none)
+                Next ->
+                    calcNextPos gameModel
+                SpawnFood (x,y)->
+                    (Play {gameModel| food = (x,y)::gameModel.food},Cmd.none)
+                GeneratePosition ->
+                    (Play gameModel, generate SpawnFood (randomPoint gameModel))
 
-randomPoint : Model -> Generator (Float,Float)
+randomPoint : GameModel -> Generator (Float,Float)
 randomPoint m =
     pair (float (-m.area.width/2+2) (m.area.depth/2-2)) (float (-m.area.width/2+2) (m.area.depth/2-2))
 
-nextPos: Model -> Float -> Float -> (Float, Float)
+nextPos: GameModel -> Float -> Float -> (Float, Float)
 nextPos m x y =
     let
         moveD = 0.5
@@ -95,50 +116,49 @@ removeFood (x,y) l =
         List.filter (\(x1,y1) -> not (isInRange (x,y) (x1,y1))) l
 
 
-leftField: (Float, Float) -> Model -> Bool
+leftField: (Float, Float) -> GameModel -> Bool
 leftField (x,y) model =
     not (model.area.width/2-1 >= x && x >= -model.area.width/2+1 && model.area.depth/2-1 >= y && y >= -model.area.depth/2+1)
 
-hitSnake: (Float, Float) -> Model -> Bool
+hitSnake: (Float, Float) -> GameModel -> Bool
 hitSnake (x,y) model =
     (model.snake |> List.filter (\(x1,y1) -> x == x1 && y == y1)
                 |> List.length) > 1
 
-calcNextPos: Model -> ( Model, Cmd Msg )
+calcNextPos: GameModel -> ( Model, Cmd Msg )
 calcNextPos m =
-
             case List.head m.snake of
                 Just (x,y)->
                     let
                         pos = nextPos m x y
                     in
                     if leftField (x,y) m then
-                        case init of
-                            (model,c) ->
-                                ({m | snake = model.snake, area = model.area, food = model.food, nextMoveDir = model.nextMoveDir, pause = model.pause}, c)
+                        (Start, Cmd.none)
                     else
                         if hitSnake (x,y) m then
-                            case init of
-                                (model,c) ->
-                                    ({m | snake = model.snake, area = model.area, food = model.food, nextMoveDir = model.nextMoveDir, pause = model.pause}, c)
+                            (Start , Cmd.none)
                         else
                             if eating (x,y) m.food then
-                                ({m | snake = (pos::m.snake), food = removeFood (x,y) m.food},Cmd.none)
+                                (Play {m | snake = (pos::m.snake), food = removeFood (x,y) m.food},Cmd.none)
                             else
-                                ({m | snake = ((nextPos m x y)::List.take ((List.length m.snake)-1) m.snake)},Cmd.none)
+                                (Play {m | snake = ((nextPos m x y)::List.take ((List.length m.snake)-1) m.snake)},Cmd.none)
                 Nothing ->
-                    (m, Cmd.none)
+                    (Play m, Cmd.none)
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-        if model.pause then
-            Keyboard.downs Key
-        else
-            Sub.batch
-                [Keyboard.downs Key
-                , Time.every ( 0.02*Time.second) (\_-> Next)
-                , Time.every ( Time.second) (\_ -> GeneratePosition)
-                ]
+        case model of
+            Start ->
+                Keyboard.downs Key
+            Play gameModel ->
+                if gameModel.pause then
+                    Keyboard.downs Key
+                else
+                    Sub.batch
+                        [Keyboard.downs Key
+                        , Time.every ( 0.02*Time.second) (\_-> Next)
+                        , Time.every ( Time.second) (\_ -> GeneratePosition)
+                        ]
 
 
 generateSphere: Float -> Float -> Html Msg
@@ -150,21 +170,25 @@ generateSphere x y =
         ]
         []]
 
-generateSnake: Model -> List (Html Msg)
+generateSnake: GameModel -> List (Html Msg)
 generateSnake m =
     List.map (\(x,y) -> (generateSphere x y)) m.snake
 
 
 view : Model -> Html Msg
 view model =
-        scene
-                []
-                ([entity [id "snake"] (generateSnake model)
-                , entity [id "food"] (generateFood model)
-                , entity [id "enviorment"] [sky [
-                                            src "https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/envmap/2294472375_24a3b8ef46_o.jpg" --"img/Park.jpg"
-                                            ][], light [AFrame.Primitives.Light.type_ Hemisphere][]]
-                , setCamera model ]++(generateField model))
+        case model of
+            Start ->
+                generatePage
+            Play gameModel->
+                scene
+                        []
+                        ([entity [id "snake"] (generateSnake gameModel)
+                        , entity [id "food"] (generateFood gameModel)
+                        , entity [id "enviorment"] [sky [
+                                                    src "https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/envmap/2294472375_24a3b8ef46_o.jpg" --"img/Park.jpg"
+                                                    ][], light [AFrame.Primitives.Light.type_ Hemisphere][]]
+                        , setCamera gameModel ]++(generateField gameModel))
 
 main : Program Never Model Msg
 main =
@@ -196,11 +220,11 @@ generateFoodTile x y =
             []
         ]]
 
-generateFood: Model -> List (Html Msg)
+generateFood: GameModel -> List (Html Msg)
 generateFood m =
     List.map (\(x,y) -> generateFoodTile x y) m.food
 
-getRotation: Model -> Attribute Msg
+getRotation: GameModel -> Attribute Msg
 getRotation m =
     case m.nextMoveDir of
         N->
@@ -212,7 +236,7 @@ getRotation m =
         W ->
             rotation 0 0 0
 
-setCamera: Model -> Html Msg
+setCamera: GameModel -> Html Msg
 setCamera m =
     case List.head m.snake of
         Just (x,y) ->
