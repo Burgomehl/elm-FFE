@@ -141,8 +141,8 @@ generateSphere: Float -> Float -> Html Msg
 generateSphere x y =
      entity [id "snakeE", position x 1.25 y
      ] [sphere
-        [ radius 1.25
-        , color (rgb 240 173 150)
+        [ src "https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/space/earth_atmos_4096.jpg"
+        , radius 1
         ]
         []]
 
@@ -177,9 +177,9 @@ generateFoodTile x y =
         , width 1
         , height 1
         , depth 1
-        , color (rgb 0 255 0)
+        , color (rgb 255 0 0)
         , transparent True
-        , opacity 0.5
+        , opacity 1
         ][
             animation
             [attribute_ "rotation"

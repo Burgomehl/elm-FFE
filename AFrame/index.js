@@ -9987,79 +9987,79 @@ var _eskimoblood$elm_color_extra$Color_Convert$Lab = F3(
 		return {l: a, a: b, b: c};
 	});
 
-var _halfzebra$elm_aframe$AFrame$entity = _elm_lang$html$Html$node('a-entity');
-var _halfzebra$elm_aframe$AFrame$scene = _elm_lang$html$Html$node('a-scene');
+var _user$project$AFrame$entity = _elm_lang$html$Html$node('a-entity');
+var _user$project$AFrame$scene = _elm_lang$html$Html$node('a-scene');
 
-var _halfzebra$elm_aframe$AFrame_Animations$to = function (value) {
+var _user$project$AFrame_Animations$to = function (value) {
 	return A2(_elm_lang$html$Html_Attributes$attribute, 'to', value);
 };
-var _halfzebra$elm_aframe$AFrame_Animations$repeat = function (value) {
+var _user$project$AFrame_Animations$repeat = function (value) {
 	return A2(_elm_lang$html$Html_Attributes$attribute, 'repeat', value);
 };
-var _halfzebra$elm_aframe$AFrame_Animations$from = function (value) {
+var _user$project$AFrame_Animations$from = function (value) {
 	return A2(_elm_lang$html$Html_Attributes$attribute, 'from', value);
 };
-var _halfzebra$elm_aframe$AFrame_Animations$fill = function (value) {
+var _user$project$AFrame_Animations$fill = function (value) {
 	return A2(_elm_lang$html$Html_Attributes$attribute, 'fill', value);
 };
-var _halfzebra$elm_aframe$AFrame_Animations$easing = function (value) {
+var _user$project$AFrame_Animations$easing = function (value) {
 	return A2(_elm_lang$html$Html_Attributes$attribute, 'easing', value);
 };
-var _halfzebra$elm_aframe$AFrame_Animations$dur = function (value) {
+var _user$project$AFrame_Animations$dur = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'dur',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Animations$direction = function (value) {
+var _user$project$AFrame_Animations$direction = function (value) {
 	return A2(_elm_lang$html$Html_Attributes$attribute, 'direction', value);
 };
-var _halfzebra$elm_aframe$AFrame_Animations$begin = function (value) {
+var _user$project$AFrame_Animations$begin = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'begin',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Animations$attribute_ = function (value) {
+var _user$project$AFrame_Animations$attribute_ = function (value) {
 	return A2(_elm_lang$html$Html_Attributes$attribute, 'attribute', value);
 };
-var _halfzebra$elm_aframe$AFrame_Animations$animation = _elm_lang$html$Html$node('a-animation');
+var _user$project$AFrame_Animations$animation = _elm_lang$html$Html$node('a-animation');
 
-var _halfzebra$elm_aframe$AFrame_Extra_Physics$kinematicBody = A2(_elm_lang$html$Html_Attributes$attribute, 'kinematic-body', '');
-var _halfzebra$elm_aframe$AFrame_Extra_Physics$staticBody = A2(_elm_lang$html$Html_Attributes$attribute, 'static-body', '');
-var _halfzebra$elm_aframe$AFrame_Extra_Physics$dynamicBody = A2(_elm_lang$html$Html_Attributes$attribute, 'dynamic-body', '');
-var _halfzebra$elm_aframe$AFrame_Extra_Physics$grid = _elm_lang$html$Html$node('a-grid');
+var _user$project$AFrame_Extra_Physics$kinematicBody = A2(_elm_lang$html$Html_Attributes$attribute, 'kinematic-body', '');
+var _user$project$AFrame_Extra_Physics$staticBody = A2(_elm_lang$html$Html_Attributes$attribute, 'static-body', '');
+var _user$project$AFrame_Extra_Physics$dynamicBody = A2(_elm_lang$html$Html_Attributes$attribute, 'dynamic-body', '');
+var _user$project$AFrame_Extra_Physics$grid = _elm_lang$html$Html$node('a-grid');
 
-var _halfzebra$elm_aframe$AFrame_Primitives$assetItem = _elm_lang$html$Html$node('a-asset-item');
-var _halfzebra$elm_aframe$AFrame_Primitives$assets = _elm_lang$html$Html$node('a-assets');
-var _halfzebra$elm_aframe$AFrame_Primitives$videosphere = _elm_lang$html$Html$node('a-videosphere');
-var _halfzebra$elm_aframe$AFrame_Primitives$video = _elm_lang$html$Html$node('a-video');
-var _halfzebra$elm_aframe$AFrame_Primitives$triangle = _elm_lang$html$Html$node('a-triangle');
-var _halfzebra$elm_aframe$AFrame_Primitives$torus = _elm_lang$html$Html$node('a-torus');
-var _halfzebra$elm_aframe$AFrame_Primitives$torusKnot = _elm_lang$html$Html$node('a-torus-knot');
-var _halfzebra$elm_aframe$AFrame_Primitives$text = _elm_lang$html$Html$node('a-text');
-var _halfzebra$elm_aframe$AFrame_Primitives$tetrahedron = _elm_lang$html$Html$node('a-tetrahedron');
-var _halfzebra$elm_aframe$AFrame_Primitives$sphere = _elm_lang$html$Html$node('a-sphere');
-var _halfzebra$elm_aframe$AFrame_Primitives$sound = _elm_lang$html$Html$node('a-sound');
-var _halfzebra$elm_aframe$AFrame_Primitives$sky = _elm_lang$html$Html$node('a-sky');
-var _halfzebra$elm_aframe$AFrame_Primitives$ring = _elm_lang$html$Html$node('a-ring');
-var _halfzebra$elm_aframe$AFrame_Primitives$plane = _elm_lang$html$Html$node('a-plane');
-var _halfzebra$elm_aframe$AFrame_Primitives$octahedron = _elm_lang$html$Html$node('a-octahedron');
-var _halfzebra$elm_aframe$AFrame_Primitives$objModel = _elm_lang$html$Html$node('a-obj-model');
-var _halfzebra$elm_aframe$AFrame_Primitives$link = _elm_lang$html$Html$node('a-link');
-var _halfzebra$elm_aframe$AFrame_Primitives$image = _elm_lang$html$Html$node('a-image');
-var _halfzebra$elm_aframe$AFrame_Primitives$icosahedron = _elm_lang$html$Html$node('a-icosahedron');
-var _halfzebra$elm_aframe$AFrame_Primitives$gltfModel = _elm_lang$html$Html$node('a-gltf-model');
-var _halfzebra$elm_aframe$AFrame_Primitives$dodecahedron = _elm_lang$html$Html$node('a-dodecahedron');
-var _halfzebra$elm_aframe$AFrame_Primitives$cylinder = _elm_lang$html$Html$node('a-cylinder');
-var _halfzebra$elm_aframe$AFrame_Primitives$curvedimage = _elm_lang$html$Html$node('a-curvedimage');
-var _halfzebra$elm_aframe$AFrame_Primitives$cursor = _elm_lang$html$Html$node('a-cursor');
-var _halfzebra$elm_aframe$AFrame_Primitives$cone = _elm_lang$html$Html$node('a-cone');
-var _halfzebra$elm_aframe$AFrame_Primitives$colladaModel = _elm_lang$html$Html$node('a-collada-model');
-var _halfzebra$elm_aframe$AFrame_Primitives$circle = _elm_lang$html$Html$node('a-circle');
-var _halfzebra$elm_aframe$AFrame_Primitives$box = _elm_lang$html$Html$node('a-box');
+var _user$project$AFrame_Primitives$assetItem = _elm_lang$html$Html$node('a-asset-item');
+var _user$project$AFrame_Primitives$assets = _elm_lang$html$Html$node('a-assets');
+var _user$project$AFrame_Primitives$videosphere = _elm_lang$html$Html$node('a-videosphere');
+var _user$project$AFrame_Primitives$video = _elm_lang$html$Html$node('a-video');
+var _user$project$AFrame_Primitives$triangle = _elm_lang$html$Html$node('a-triangle');
+var _user$project$AFrame_Primitives$torus = _elm_lang$html$Html$node('a-torus');
+var _user$project$AFrame_Primitives$torusKnot = _elm_lang$html$Html$node('a-torus-knot');
+var _user$project$AFrame_Primitives$text = _elm_lang$html$Html$node('a-text');
+var _user$project$AFrame_Primitives$tetrahedron = _elm_lang$html$Html$node('a-tetrahedron');
+var _user$project$AFrame_Primitives$sphere = _elm_lang$html$Html$node('a-sphere');
+var _user$project$AFrame_Primitives$sound = _elm_lang$html$Html$node('a-sound');
+var _user$project$AFrame_Primitives$sky = _elm_lang$html$Html$node('a-sky');
+var _user$project$AFrame_Primitives$ring = _elm_lang$html$Html$node('a-ring');
+var _user$project$AFrame_Primitives$plane = _elm_lang$html$Html$node('a-plane');
+var _user$project$AFrame_Primitives$octahedron = _elm_lang$html$Html$node('a-octahedron');
+var _user$project$AFrame_Primitives$objModel = _elm_lang$html$Html$node('a-obj-model');
+var _user$project$AFrame_Primitives$link = _elm_lang$html$Html$node('a-link');
+var _user$project$AFrame_Primitives$image = _elm_lang$html$Html$node('a-image');
+var _user$project$AFrame_Primitives$icosahedron = _elm_lang$html$Html$node('a-icosahedron');
+var _user$project$AFrame_Primitives$gltfModel = _elm_lang$html$Html$node('a-gltf-model');
+var _user$project$AFrame_Primitives$dodecahedron = _elm_lang$html$Html$node('a-dodecahedron');
+var _user$project$AFrame_Primitives$cylinder = _elm_lang$html$Html$node('a-cylinder');
+var _user$project$AFrame_Primitives$curvedimage = _elm_lang$html$Html$node('a-curvedimage');
+var _user$project$AFrame_Primitives$cursor = _elm_lang$html$Html$node('a-cursor');
+var _user$project$AFrame_Primitives$cone = _elm_lang$html$Html$node('a-cone');
+var _user$project$AFrame_Primitives$colladaModel = _elm_lang$html$Html$node('a-collada-model');
+var _user$project$AFrame_Primitives$circle = _elm_lang$html$Html$node('a-circle');
+var _user$project$AFrame_Primitives$box = _elm_lang$html$Html$node('a-box');
 
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$vrModeUi = function (enabled) {
+var _user$project$AFrame_Primitives_Attributes$vrModeUi = function (enabled) {
 	var value = function () {
 		var _p0 = enabled;
 		if (_p0 === true) {
@@ -10071,73 +10071,73 @@ var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$vrModeUi = function (enab
 	var attribstring = A2(_elm_lang$core$Basics_ops['++'], 'enabled: ', value);
 	return A2(_elm_lang$html$Html_Attributes$attribute, 'vm-mode-ui', attribstring);
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$type_ = function (value) {
+var _user$project$AFrame_Primitives_Attributes$type_ = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'type',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$intensity = function (value) {
+var _user$project$AFrame_Primitives_Attributes$intensity = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'intensity',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$groundColor = function (value) {
+var _user$project$AFrame_Primitives_Attributes$groundColor = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'ground-color',
 		_eskimoblood$elm_color_extra$Color_Convert$colorToHex(value));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$exponent = function (value) {
+var _user$project$AFrame_Primitives_Attributes$exponent = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'exponent',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$distance = function (value) {
+var _user$project$AFrame_Primitives_Attributes$distance = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'distance',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$decay = function (value) {
+var _user$project$AFrame_Primitives_Attributes$decay = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'decay',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$angle = function (value) {
+var _user$project$AFrame_Primitives_Attributes$angle = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'angle',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$segmentsRadial = function (value) {
+var _user$project$AFrame_Primitives_Attributes$segmentsRadial = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'segments-radial',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$depth = function (value) {
+var _user$project$AFrame_Primitives_Attributes$depth = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'depth',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$width = function (value) {
+var _user$project$AFrame_Primitives_Attributes$width = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'width',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$height = function (value) {
+var _user$project$AFrame_Primitives_Attributes$height = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'height',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$rotation = F3(
+var _user$project$AFrame_Primitives_Attributes$rotation = F3(
 	function (x, y, z) {
 		return A2(
 			_elm_lang$html$Html_Attributes$attribute,
@@ -10163,7 +10163,7 @@ var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$rotation = F3(
 							}
 						}))));
 	});
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$scale = F3(
+var _user$project$AFrame_Primitives_Attributes$scale = F3(
 	function (x, y, z) {
 		return A2(
 			_elm_lang$html$Html_Attributes$attribute,
@@ -10189,7 +10189,7 @@ var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$scale = F3(
 							}
 						}))));
 	});
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$position = F3(
+var _user$project$AFrame_Primitives_Attributes$position = F3(
 	function (x, y, z) {
 		return A2(
 			_elm_lang$html$Html_Attributes$attribute,
@@ -10215,32 +10215,35 @@ var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$position = F3(
 							}
 						}))));
 	});
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$radiusBottom = function (value) {
+var _user$project$AFrame_Primitives_Attributes$radiusBottom = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'radius-bottom',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$radiusTop = function (value) {
+var _user$project$AFrame_Primitives_Attributes$radiusTop = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'radius-top',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$radius = function (value) {
+var _user$project$AFrame_Primitives_Attributes$radius = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'radius',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$transparent = function (value) {
+var _user$project$AFrame_Primitives_Attributes$id = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, 'id', value);
+};
+var _user$project$AFrame_Primitives_Attributes$transparent = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'transparent',
 		_elm_lang$core$String$toLower(
 			_elm_lang$core$Basics$toString(value)));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$translate = F3(
+var _user$project$AFrame_Primitives_Attributes$translate = F3(
 	function (x, y, z) {
 		return A2(
 			_elm_lang$html$Html_Attributes$attribute,
@@ -10266,81 +10269,78 @@ var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$translate = F3(
 							}
 						}))));
 	});
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$roughness = function (value) {
+var _user$project$AFrame_Primitives_Attributes$roughness = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'roughness',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$opacity = function (value) {
+var _user$project$AFrame_Primitives_Attributes$opacity = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'opacity',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$src = function (value) {
+var _user$project$AFrame_Primitives_Attributes$src = function (value) {
 	return A2(_elm_lang$html$Html_Attributes$attribute, 'src', value);
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$id = function (value) {
-	return A2(_elm_lang$html$Html_Attributes$attribute, 'id', value);
-};
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$shader = function (value) {
+var _user$project$AFrame_Primitives_Attributes$shader = function (value) {
 	return A2(_elm_lang$html$Html_Attributes$attribute, 'shader', value);
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$metalness = function (value) {
+var _user$project$AFrame_Primitives_Attributes$metalness = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'metalness',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Attributes$color = function (value) {
+var _user$project$AFrame_Primitives_Attributes$color = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'color',
 		_eskimoblood$elm_color_extra$Color_Convert$colorToHex(value));
 };
 
-var _halfzebra$elm_aframe$AFrame_Primitives_Camera$wasdControlsEnabled = function (value) {
+var _user$project$AFrame_Primitives_Camera$wasdControlsEnabled = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'wasd-controls-enabled',
 		_elm_lang$core$String$toLower(
 			_elm_lang$core$Basics$toString(value)));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Camera$near = function (value) {
+var _user$project$AFrame_Primitives_Camera$near = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'near',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Camera$lookControlsEnabled = function (value) {
+var _user$project$AFrame_Primitives_Camera$lookControlsEnabled = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'look-controls-enabled',
 		_elm_lang$core$String$toLower(
 			_elm_lang$core$Basics$toString(value)));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Camera$fov = function (value) {
+var _user$project$AFrame_Primitives_Camera$fov = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'fov',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Camera$far = function (value) {
+var _user$project$AFrame_Primitives_Camera$far = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'far',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Camera$camera = _elm_lang$html$Html$node('a-camera');
+var _user$project$AFrame_Primitives_Camera$camera = _elm_lang$html$Html$node('a-camera');
 
-var _halfzebra$elm_aframe$AFrame_Primitives_Light$intensity = function (value) {
+var _user$project$AFrame_Primitives_Light$intensity = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
 		'intensity',
 		_elm_lang$core$Basics$toString(value));
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Light$type_ = function (light) {
+var _user$project$AFrame_Primitives_Light$type_ = function (light) {
 	var lightType = function () {
 		var _p0 = light;
 		switch (_p0.ctor) {
@@ -10358,12 +10358,12 @@ var _halfzebra$elm_aframe$AFrame_Primitives_Light$type_ = function (light) {
 	}();
 	return A2(_elm_lang$html$Html_Attributes$attribute, 'type', lightType);
 };
-var _halfzebra$elm_aframe$AFrame_Primitives_Light$light = _elm_lang$html$Html$node('a-light');
-var _halfzebra$elm_aframe$AFrame_Primitives_Light$Spot = {ctor: 'Spot'};
-var _halfzebra$elm_aframe$AFrame_Primitives_Light$Point = {ctor: 'Point'};
-var _halfzebra$elm_aframe$AFrame_Primitives_Light$Hemisphere = {ctor: 'Hemisphere'};
-var _halfzebra$elm_aframe$AFrame_Primitives_Light$Directional = {ctor: 'Directional'};
-var _halfzebra$elm_aframe$AFrame_Primitives_Light$Ambient = {ctor: 'Ambient'};
+var _user$project$AFrame_Primitives_Light$light = _elm_lang$html$Html$node('a-light');
+var _user$project$AFrame_Primitives_Light$Spot = {ctor: 'Spot'};
+var _user$project$AFrame_Primitives_Light$Point = {ctor: 'Point'};
+var _user$project$AFrame_Primitives_Light$Hemisphere = {ctor: 'Hemisphere'};
+var _user$project$AFrame_Primitives_Light$Directional = {ctor: 'Directional'};
+var _user$project$AFrame_Primitives_Light$Ambient = {ctor: 'Ambient'};
 
 var _user$project$Snake$Model = F5(
 	function (a, b, c, d, e) {
@@ -10391,49 +10391,36 @@ var _user$project$PlayArea$generateWall = F2(
 		var _p2 = _p1;
 		var _p3 = _p0;
 		return A2(
-			_halfzebra$elm_aframe$AFrame$entity,
+			_user$project$AFrame$entity,
 			{
 				ctor: '::',
-				_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$id('wall'),
+				_0: _user$project$AFrame_Primitives_Attributes$id('wall'),
 				_1: {
 					ctor: '::',
-					_0: A3(_halfzebra$elm_aframe$AFrame_Primitives_Attributes$position, _p2._0, _p2._1, _p2._2),
+					_0: A3(_user$project$AFrame_Primitives_Attributes$position, _p2._0, _p2._1, _p2._2),
 					_1: {ctor: '[]'}
 				}
 			},
 			{
 				ctor: '::',
 				_0: A2(
-					_halfzebra$elm_aframe$AFrame_Primitives$box,
+					_user$project$AFrame_Primitives$box,
 					{
 						ctor: '::',
-						_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$radius(0.5),
+						_0: _user$project$AFrame_Primitives_Attributes$radius(0.5),
 						_1: {
 							ctor: '::',
-							_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$width(_p3._0),
+							_0: _user$project$AFrame_Primitives_Attributes$width(_p3._0),
 							_1: {
 								ctor: '::',
-								_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$height(_p3._1),
+								_0: _user$project$AFrame_Primitives_Attributes$height(_p3._1),
 								_1: {
 									ctor: '::',
-									_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$depth(_p3._2),
+									_0: _user$project$AFrame_Primitives_Attributes$depth(_p3._2),
 									_1: {
 										ctor: '::',
-										_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$color(
-											A3(_elm_lang$core$Color$rgb, 90, 99, 120)),
-										_1: {
-											ctor: '::',
-											_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$transparent(false),
-											_1: {
-												ctor: '::',
-												_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$opacity(1),
-												_1: {
-													ctor: '::',
-													_0: _halfzebra$elm_aframe$AFrame_Extra_Physics$staticBody,
-													_1: {ctor: '[]'}
-												}
-											}
-										}
+										_0: _user$project$AFrame_Primitives_Attributes$src('https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/terrain/grasslight-big.jpg'),
+										_1: {ctor: '[]'}
 									}
 								}
 							}
@@ -10447,36 +10434,35 @@ var _user$project$PlayArea$generateField = function (m) {
 	return {
 		ctor: '::',
 		_0: A2(
-			_halfzebra$elm_aframe$AFrame$entity,
+			_user$project$AFrame$entity,
 			{
 				ctor: '::',
-				_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$id('floor'),
+				_0: _user$project$AFrame_Primitives_Attributes$id('floor'),
 				_1: {
 					ctor: '::',
-					_0: A3(_halfzebra$elm_aframe$AFrame_Primitives_Attributes$position, 0, 0, 0),
+					_0: A3(_user$project$AFrame_Primitives_Attributes$position, 0, 0, 0),
 					_1: {ctor: '[]'}
 				}
 			},
 			{
 				ctor: '::',
 				_0: A2(
-					_halfzebra$elm_aframe$AFrame_Primitives$plane,
+					_user$project$AFrame_Primitives$plane,
 					{
 						ctor: '::',
-						_0: A3(_halfzebra$elm_aframe$AFrame_Primitives_Attributes$rotation, -90, 0, 0),
+						_0: A3(_user$project$AFrame_Primitives_Attributes$rotation, -90, 0, 0),
 						_1: {
 							ctor: '::',
-							_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$width(m.area.width),
+							_0: _user$project$AFrame_Primitives_Attributes$width(m.area.width),
 							_1: {
 								ctor: '::',
-								_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$height(m.area.depth),
+								_0: _user$project$AFrame_Primitives_Attributes$height(m.area.depth),
 								_1: {
 									ctor: '::',
-									_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$color(
-										A3(_elm_lang$core$Color$rgb, 90, 99, 120)),
+									_0: _user$project$AFrame_Extra_Physics$staticBody,
 									_1: {
 										ctor: '::',
-										_0: _halfzebra$elm_aframe$AFrame_Extra_Physics$staticBody,
+										_0: _user$project$AFrame_Primitives_Attributes$src('https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/terrain/grasslight-big.jpg'),
 										_1: {ctor: '[]'}
 									}
 								}
@@ -10532,32 +10518,32 @@ var _user$project$Main$getRotation = function (m) {
 	var _p0 = m.nextMoveDir;
 	switch (_p0.ctor) {
 		case 'N':
-			return A3(_halfzebra$elm_aframe$AFrame_Primitives_Attributes$rotation, 90, 0, 0);
+			return A3(_user$project$AFrame_Primitives_Attributes$rotation, 90, 0, 0);
 		case 'E':
-			return A3(_halfzebra$elm_aframe$AFrame_Primitives_Attributes$rotation, 180, 0, 0);
+			return A3(_user$project$AFrame_Primitives_Attributes$rotation, 180, 0, 0);
 		case 'S':
-			return A3(_halfzebra$elm_aframe$AFrame_Primitives_Attributes$rotation, 270, 0, 0);
+			return A3(_user$project$AFrame_Primitives_Attributes$rotation, 270, 0, 0);
 		default:
-			return A3(_halfzebra$elm_aframe$AFrame_Primitives_Attributes$rotation, 0, 0, 0);
+			return A3(_user$project$AFrame_Primitives_Attributes$rotation, 0, 0, 0);
 	}
 };
 var _user$project$Main$setCamera = function (m) {
 	var _p1 = _elm_lang$core$List$head(m.snake);
 	if (_p1.ctor === 'Just') {
 		return A2(
-			_halfzebra$elm_aframe$AFrame_Primitives_Camera$camera,
+			_user$project$AFrame_Primitives_Camera$camera,
 			{
 				ctor: '::',
-				_0: _halfzebra$elm_aframe$AFrame_Primitives_Camera$wasdControlsEnabled(false),
+				_0: _user$project$AFrame_Primitives_Camera$wasdControlsEnabled(false),
 				_1: {
 					ctor: '::',
-					_0: A3(_halfzebra$elm_aframe$AFrame_Primitives_Attributes$position, _p1._0._0, 10.25, _p1._0._1),
+					_0: A3(_user$project$AFrame_Primitives_Attributes$position, _p1._0._0, 10.25, _p1._0._1),
 					_1: {
 						ctor: '::',
-						_0: A3(_halfzebra$elm_aframe$AFrame_Primitives_Attributes$rotation, 0, 0, 90),
+						_0: A3(_user$project$AFrame_Primitives_Attributes$rotation, 0, 0, 90),
 						_1: {
 							ctor: '::',
-							_0: _halfzebra$elm_aframe$AFrame_Extra_Physics$kinematicBody,
+							_0: _user$project$AFrame_Extra_Physics$kinematicBody,
 							_1: {ctor: '[]'}
 						}
 					}
@@ -10566,10 +10552,10 @@ var _user$project$Main$setCamera = function (m) {
 			{ctor: '[]'});
 	} else {
 		return A2(
-			_halfzebra$elm_aframe$AFrame_Primitives_Camera$camera,
+			_user$project$AFrame_Primitives_Camera$camera,
 			{
 				ctor: '::',
-				_0: A3(_halfzebra$elm_aframe$AFrame_Primitives_Attributes$position, 0, 1.25, 0),
+				_0: A3(_user$project$AFrame_Primitives_Attributes$position, 0, 1.25, 0),
 				_1: {
 					ctor: '::',
 					_0: _user$project$Main$getRotation(m),
@@ -10582,42 +10568,42 @@ var _user$project$Main$setCamera = function (m) {
 var _user$project$Main$generateFoodTile = F2(
 	function (x, y) {
 		return A2(
-			_halfzebra$elm_aframe$AFrame$entity,
+			_user$project$AFrame$entity,
 			{
 				ctor: '::',
-				_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$id('foodTile'),
+				_0: _user$project$AFrame_Primitives_Attributes$id('foodTile'),
 				_1: {
 					ctor: '::',
-					_0: A3(_halfzebra$elm_aframe$AFrame_Primitives_Attributes$position, x, 1, y),
+					_0: A3(_user$project$AFrame_Primitives_Attributes$position, x, 1, y),
 					_1: {ctor: '[]'}
 				}
 			},
 			{
 				ctor: '::',
 				_0: A2(
-					_halfzebra$elm_aframe$AFrame_Primitives$box,
+					_user$project$AFrame_Primitives$box,
 					{
 						ctor: '::',
-						_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$radius(0.5),
+						_0: _user$project$AFrame_Primitives_Attributes$radius(0.5),
 						_1: {
 							ctor: '::',
-							_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$width(1),
+							_0: _user$project$AFrame_Primitives_Attributes$width(1),
 							_1: {
 								ctor: '::',
-								_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$height(1),
+								_0: _user$project$AFrame_Primitives_Attributes$height(1),
 								_1: {
 									ctor: '::',
-									_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$depth(1),
+									_0: _user$project$AFrame_Primitives_Attributes$depth(1),
 									_1: {
 										ctor: '::',
-										_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$color(
-											A3(_elm_lang$core$Color$rgb, 0, 255, 0)),
+										_0: _user$project$AFrame_Primitives_Attributes$color(
+											A3(_elm_lang$core$Color$rgb, 255, 0, 0)),
 										_1: {
 											ctor: '::',
-											_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$transparent(true),
+											_0: _user$project$AFrame_Primitives_Attributes$transparent(true),
 											_1: {
 												ctor: '::',
-												_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$opacity(0.5),
+												_0: _user$project$AFrame_Primitives_Attributes$opacity(1),
 												_1: {ctor: '[]'}
 											}
 										}
@@ -10629,22 +10615,22 @@ var _user$project$Main$generateFoodTile = F2(
 					{
 						ctor: '::',
 						_0: A2(
-							_halfzebra$elm_aframe$AFrame_Animations$animation,
+							_user$project$AFrame_Animations$animation,
 							{
 								ctor: '::',
-								_0: _halfzebra$elm_aframe$AFrame_Animations$attribute_('rotation'),
+								_0: _user$project$AFrame_Animations$attribute_('rotation'),
 								_1: {
 									ctor: '::',
-									_0: _halfzebra$elm_aframe$AFrame_Animations$dur(10000),
+									_0: _user$project$AFrame_Animations$dur(10000),
 									_1: {
 										ctor: '::',
-										_0: _halfzebra$elm_aframe$AFrame_Animations$fill('forwards'),
+										_0: _user$project$AFrame_Animations$fill('forwards'),
 										_1: {
 											ctor: '::',
-											_0: _halfzebra$elm_aframe$AFrame_Animations$to('0 360 360'),
+											_0: _user$project$AFrame_Animations$to('0 360 360'),
 											_1: {
 												ctor: '::',
-												_0: _halfzebra$elm_aframe$AFrame_Animations$repeat('infinite'),
+												_0: _user$project$AFrame_Animations$repeat('infinite'),
 												_1: {ctor: '[]'}
 											}
 										}
@@ -10669,27 +10655,26 @@ var _user$project$Main$generateFood = function (m) {
 var _user$project$Main$generateSphere = F2(
 	function (x, y) {
 		return A2(
-			_halfzebra$elm_aframe$AFrame$entity,
+			_user$project$AFrame$entity,
 			{
 				ctor: '::',
-				_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$id('snakeE'),
+				_0: _user$project$AFrame_Primitives_Attributes$id('snakeE'),
 				_1: {
 					ctor: '::',
-					_0: A3(_halfzebra$elm_aframe$AFrame_Primitives_Attributes$position, x, 1.25, y),
+					_0: A3(_user$project$AFrame_Primitives_Attributes$position, x, 1.25, y),
 					_1: {ctor: '[]'}
 				}
 			},
 			{
 				ctor: '::',
 				_0: A2(
-					_halfzebra$elm_aframe$AFrame_Primitives$sphere,
+					_user$project$AFrame_Primitives$sphere,
 					{
 						ctor: '::',
-						_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$radius(1.25),
+						_0: _user$project$AFrame_Primitives_Attributes$src('https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/space/earth_atmos_4096.jpg'),
 						_1: {
 							ctor: '::',
-							_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$color(
-								A3(_elm_lang$core$Color$rgb, 240, 173, 150)),
+							_0: _user$project$AFrame_Primitives_Attributes$radius(1),
 							_1: {ctor: '[]'}
 						}
 					},
@@ -10708,49 +10693,49 @@ var _user$project$Main$generateSnake = function (m) {
 };
 var _user$project$Main$view = function (model) {
 	return A2(
-		_halfzebra$elm_aframe$AFrame$scene,
+		_user$project$AFrame$scene,
 		{ctor: '[]'},
 		A2(
 			_elm_lang$core$Basics_ops['++'],
 			{
 				ctor: '::',
 				_0: A2(
-					_halfzebra$elm_aframe$AFrame$entity,
+					_user$project$AFrame$entity,
 					{
 						ctor: '::',
-						_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$id('snake'),
+						_0: _user$project$AFrame_Primitives_Attributes$id('snake'),
 						_1: {ctor: '[]'}
 					},
 					_user$project$Main$generateSnake(model)),
 				_1: {
 					ctor: '::',
 					_0: A2(
-						_halfzebra$elm_aframe$AFrame$entity,
+						_user$project$AFrame$entity,
 						{
 							ctor: '::',
-							_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$id('food'),
+							_0: _user$project$AFrame_Primitives_Attributes$id('food'),
 							_1: {ctor: '[]'}
 						},
 						_user$project$Main$generateFood(model)),
 					_1: {
 						ctor: '::',
 						_0: A2(
-							_halfzebra$elm_aframe$AFrame$entity,
+							_user$project$AFrame$entity,
 							{
 								ctor: '::',
-								_0: _halfzebra$elm_aframe$AFrame_Primitives_Attributes$id('enviorment'),
+								_0: _user$project$AFrame_Primitives_Attributes$id('enviorment'),
 								_1: {ctor: '[]'}
 							},
 							{
 								ctor: '::',
 								_0: A2(
-									_halfzebra$elm_aframe$AFrame_Primitives$sky,
+									_user$project$AFrame_Primitives$sky,
 									{ctor: '[]'},
 									{ctor: '[]'}),
 								_1: {
 									ctor: '::',
 									_0: A2(
-										_halfzebra$elm_aframe$AFrame_Primitives_Light$light,
+										_user$project$AFrame_Primitives_Light$light,
 										{ctor: '[]'},
 										{ctor: '[]'}),
 									_1: {ctor: '[]'}

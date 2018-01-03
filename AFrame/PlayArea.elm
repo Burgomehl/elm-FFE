@@ -14,11 +14,7 @@ generateWall (x,y,z) (w,h,d)=
         , width w
         , height h
         , depth d
-        , color (rgb 90 99 120)
-        -- ansonsten sind die Wände auch Durchsichtig
-        , transparent False
-        , opacity 1
-        , staticBody
+        , src "https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/terrain/grasslight-big.jpg"
         ]
         []]
 
@@ -28,8 +24,8 @@ generateField m =
         [ rotation -90 0 0
         , width m.area.width
         , height m.area.depth
-        , color (rgb 90 99 120)
         , staticBody
+        , src "https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/terrain/grasslight-big.jpg"
         ]
         []]
     , (generateWall (0,0,-m.area.depth/2) (m.area.width,m.area.wallHeight,1))
