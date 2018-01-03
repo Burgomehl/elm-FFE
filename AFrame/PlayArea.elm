@@ -21,6 +21,7 @@ generateWall (x,y,z) (w,h,d)=
         , staticBody
         , color (rgb 255 255 255)
         , src "https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/bricks/brick_diffuse.jpg"
+        , AFrame.Primitives.Attributes.repeat "5 1"
         ]
         []]
 

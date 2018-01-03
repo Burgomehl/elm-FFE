@@ -10281,6 +10281,9 @@ var _user$project$AFrame_Primitives_Attributes$opacity = function (value) {
 		'opacity',
 		_elm_lang$core$Basics$toString(value));
 };
+var _user$project$AFrame_Primitives_Attributes$repeat = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, 'repeat', value);
+};
 var _user$project$AFrame_Primitives_Attributes$src = function (value) {
 	return A2(_elm_lang$html$Html_Attributes$attribute, 'src', value);
 };
@@ -10436,7 +10439,11 @@ var _user$project$PlayArea$generateWall = F2(
 														_1: {
 															ctor: '::',
 															_0: _user$project$AFrame_Primitives_Attributes$src('https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/bricks/brick_diffuse.jpg'),
-															_1: {ctor: '[]'}
+															_1: {
+																ctor: '::',
+																_0: _user$project$AFrame_Primitives_Attributes$repeat('5 1'),
+																_1: {ctor: '[]'}
+															}
 														}
 													}
 												}
@@ -10558,7 +10565,7 @@ var _user$project$Main$setCamera = function (m) {
 				_0: _user$project$AFrame_Primitives_Camera$wasdControlsEnabled(false),
 				_1: {
 					ctor: '::',
-					_0: A3(_user$project$AFrame_Primitives_Attributes$position, _p1._0._0, 10.25, _p1._0._1),
+					_0: A3(_user$project$AFrame_Primitives_Attributes$position, _p1._0._0, 1.25, _p1._0._1),
 					_1: {
 						ctor: '::',
 						_0: A3(_user$project$AFrame_Primitives_Attributes$rotation, 0, 0, 90),

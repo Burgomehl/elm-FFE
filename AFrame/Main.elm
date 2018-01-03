@@ -157,15 +157,13 @@ generateSnake m =
 
 view : Model -> Html Msg
 view model =
-{-verhält sich richtig merkwürdig ... Elemente bleiben an manchen Stellen hängen mauern und Boden bewegen sich mit ...-}
         scene
                 []
                 ([entity [id "snake"] (generateSnake model)
                 , entity [id "food"] (generateFood model)
-                , entity [id "enviorment"]
-                [sky [
-                src "https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/envmap/2294472375_24a3b8ef46_o.jpg" --"img/Park.jpg"
-                ][], light [AFrame.Primitives.Light.type_ Hemisphere][]]
+                , entity [id "enviorment"] [sky [
+                                            src "https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/envmap/2294472375_24a3b8ef46_o.jpg" --"img/Park.jpg"
+                                            ][], light [AFrame.Primitives.Light.type_ Hemisphere][]]
                 , setCamera model ]++(generateField model))
 
 main : Program Never Model Msg
@@ -193,7 +191,7 @@ generateFoodTile x y =
             , dur 10000
             , fill "forwards"
             , to "0 360 360"
-            , repeat "infinite"
+            , AFrame.Animations.repeat "infinite"
             ]
             []
         ]]
@@ -221,7 +219,7 @@ setCamera m =
             camera [
                 --lookControlsEnabled False
                 wasdControlsEnabled False
-                , position x 10.25 y
+                , position x 1.25 y
                 , rotation 0 0 90
                 , kinematicBody
             ][]
