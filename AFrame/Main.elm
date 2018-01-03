@@ -9,6 +9,7 @@ import AFrame.Primitives.Camera exposing (..)
 import AFrame.Primitives.Attributes exposing (..)
 import AFrame.Extra.Physics exposing (kinematicBody, staticBody, dynamicBody)
 import AFrame.Animations exposing (..)
+import AFrame.Primitives.Light exposing (..)
 import Color exposing (rgb)
 import Keyboard exposing (..)
 import Time exposing (..)
@@ -63,15 +64,18 @@ randomPoint =
 
 nextPos: Model -> Float -> Float -> (Float, Float)
 nextPos m x y =
+    let
+        moveD = 0.5
+    in
     case m.nextMoveDir of
         N ->
-            (x+1,y)
+            (x+moveD,y)
         E ->
-            (x,y+1)
+            (x,y+moveD)
         S ->
-            (x-1,y)
+            (x-moveD,y)
         W ->
-            (x,y-1)
+            (x,y-moveD)
 
 isInRange: (Float,Float) -> (Float, Float) -> Bool
 isInRange (x,y) (x1,y1) =
@@ -132,8 +136,8 @@ subscriptions model =
         else
             Sub.batch
                 [Keyboard.downs Key
-                , Time.every ( 0.1*Time.second) (\_-> Next)
-                , Time.every ( 5*Time.second) (\_ -> GeneratePosition)
+                , Time.every ( 0.02*Time.second) (\_-> Next)
+                , Time.every ( Time.second) (\_ -> GeneratePosition)
                 ]
 
 
@@ -158,7 +162,10 @@ view model =
                 []
                 ([entity [id "snake"] (generateSnake model)
                 , entity [id "food"] (generateFood model)
-                , entity [id "enviorment"] [sky [][], light [][]]
+                , entity [id "enviorment"]
+                [sky [
+                src "https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/envmap/2294472375_24a3b8ef46_o.jpg" --"img/Park.jpg"
+                ][], light [AFrame.Primitives.Light.type_ Hemisphere][]]
                 , setCamera model ]++(generateField model))
 
 main : Program Never Model Msg

@@ -10407,20 +10407,41 @@ var _user$project$PlayArea$generateWall = F2(
 					_user$project$AFrame_Primitives$box,
 					{
 						ctor: '::',
-						_0: _user$project$AFrame_Primitives_Attributes$radius(0.5),
+						_0: _user$project$AFrame_Primitives_Attributes$id('wallP'),
 						_1: {
 							ctor: '::',
-							_0: _user$project$AFrame_Primitives_Attributes$width(_p3._0),
+							_0: _user$project$AFrame_Primitives_Attributes$radius(0.5),
 							_1: {
 								ctor: '::',
-								_0: _user$project$AFrame_Primitives_Attributes$height(_p3._1),
+								_0: _user$project$AFrame_Primitives_Attributes$width(_p3._0),
 								_1: {
 									ctor: '::',
-									_0: _user$project$AFrame_Primitives_Attributes$depth(_p3._2),
+									_0: _user$project$AFrame_Primitives_Attributes$height(_p3._1),
 									_1: {
 										ctor: '::',
-										_0: _user$project$AFrame_Primitives_Attributes$src('https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/terrain/grasslight-big.jpg'),
-										_1: {ctor: '[]'}
+										_0: _user$project$AFrame_Primitives_Attributes$depth(_p3._2),
+										_1: {
+											ctor: '::',
+											_0: _user$project$AFrame_Primitives_Attributes$transparent(false),
+											_1: {
+												ctor: '::',
+												_0: _user$project$AFrame_Primitives_Attributes$opacity(1),
+												_1: {
+													ctor: '::',
+													_0: _user$project$AFrame_Extra_Physics$staticBody,
+													_1: {
+														ctor: '::',
+														_0: _user$project$AFrame_Primitives_Attributes$color(
+															A3(_elm_lang$core$Color$rgb, 255, 255, 255)),
+														_1: {
+															ctor: '::',
+															_0: _user$project$AFrame_Primitives_Attributes$src('https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/bricks/brick_diffuse.jpg'),
+															_1: {ctor: '[]'}
+														}
+													}
+												}
+											}
+										}
 									}
 								}
 							}
@@ -10730,13 +10751,21 @@ var _user$project$Main$view = function (model) {
 								ctor: '::',
 								_0: A2(
 									_user$project$AFrame_Primitives$sky,
-									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _user$project$AFrame_Primitives_Attributes$src('https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/envmap/2294472375_24a3b8ef46_o.jpg'),
+										_1: {ctor: '[]'}
+									},
 									{ctor: '[]'}),
 								_1: {
 									ctor: '::',
 									_0: A2(
 										_user$project$AFrame_Primitives_Light$light,
-										{ctor: '[]'},
+										{
+											ctor: '::',
+											_0: _user$project$AFrame_Primitives_Light$type_(_user$project$AFrame_Primitives_Light$Hemisphere),
+											_1: {ctor: '[]'}
+										},
 										{ctor: '[]'}),
 									_1: {ctor: '[]'}
 								}
@@ -10760,7 +10789,7 @@ var _user$project$Main$subscriptions = function (model) {
 				ctor: '::',
 				_0: A2(
 					_elm_lang$core$Time$every,
-					0.1 * _elm_lang$core$Time$second,
+					2.0e-2 * _elm_lang$core$Time$second,
 					function (_p6) {
 						return _user$project$Snake$Next;
 					}),
@@ -10768,7 +10797,7 @@ var _user$project$Main$subscriptions = function (model) {
 					ctor: '::',
 					_0: A2(
 						_elm_lang$core$Time$every,
-						5 * _elm_lang$core$Time$second,
+						_elm_lang$core$Time$second,
 						function (_p7) {
 							return _user$project$Snake$GeneratePosition;
 						}),
@@ -10842,16 +10871,17 @@ var _user$project$Main$removeFood = F2(
 	});
 var _user$project$Main$nextPos = F3(
 	function (m, x, y) {
+		var moveD = 0.5;
 		var _p32 = m.nextMoveDir;
 		switch (_p32.ctor) {
 			case 'N':
-				return {ctor: '_Tuple2', _0: x + 1, _1: y};
+				return {ctor: '_Tuple2', _0: x + moveD, _1: y};
 			case 'E':
-				return {ctor: '_Tuple2', _0: x, _1: y + 1};
+				return {ctor: '_Tuple2', _0: x, _1: y + moveD};
 			case 'S':
-				return {ctor: '_Tuple2', _0: x - 1, _1: y};
+				return {ctor: '_Tuple2', _0: x - moveD, _1: y};
 			default:
-				return {ctor: '_Tuple2', _0: x, _1: y - 1};
+				return {ctor: '_Tuple2', _0: x, _1: y - moveD};
 		}
 	});
 var _user$project$Main$randomPoint = A2(

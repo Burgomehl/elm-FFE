@@ -10,11 +10,17 @@ import Color exposing (..)
 generateWall: (Float ,Float ,Float) -> (Float, Float, Int) -> Html Msg
 generateWall (x,y,z) (w,h,d)=
     entity [id "wall", position x y z] [box
-        [ radius 0.5
+        [ id "wallP"
+        , radius 0.5
         , width w
         , height h
         , depth d
-        , src "https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/terrain/grasslight-big.jpg"
+        -- ansonsten sind die Wände auch Durchsichtig
+        , transparent False
+        , opacity 1
+        , staticBody
+        , color (rgb 255 255 255)
+        , src "https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/bricks/brick_diffuse.jpg"
         ]
         []]
 
