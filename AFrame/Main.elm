@@ -27,9 +27,9 @@ update msg model =
     case msg of
         Key keycode ->
             case keycode of
-                32 -> --space
+               32 -> --space
                     ({model | pause = not model.pause}, Cmd.none)
-                65 -> -- a
+               65 -> -- a
                     case model.nextMoveDir of
                         N ->
                             ({model | nextMoveDir = W}, Cmd.none)
@@ -39,7 +39,7 @@ update msg model =
                             ({model | nextMoveDir = E}, Cmd.none)
                         W ->
                             ({model | nextMoveDir = S}, Cmd.none)
-                68 -> -- d
+               68 -> -- d
                     case model.nextMoveDir of
                         N ->
                             ({model | nextMoveDir = E}, Cmd.none)
@@ -49,18 +49,18 @@ update msg model =
                             ({model | nextMoveDir = W}, Cmd.none)
                         W ->
                             ({model | nextMoveDir = N}, Cmd.none)
-                _ ->
+               _ ->
                     (model, Cmd.none)
         Next ->
             calcNextPos model
         SpawnFood (x,y)->
             ({model| food = (x,y)::model.food},Cmd.none)
         GeneratePosition ->
-            (model, generate SpawnFood randomPoint)
+            (model, generate SpawnFood (randomPoint model))
 
-randomPoint : Generator (Float,Float)
-randomPoint =
-    pair (float -50 50) (float -50 50)
+randomPoint : Model -> Generator (Float,Float)
+randomPoint m =
+    pair (float (-m.area.width/2+2) (m.area.depth/2-2)) (float (-m.area.width/2+2) (m.area.depth/2-2))
 
 nextPos: Model -> Float -> Float -> (Float, Float)
 nextPos m x y =

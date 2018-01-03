@@ -10891,10 +10891,12 @@ var _user$project$Main$nextPos = F3(
 				return {ctor: '_Tuple2', _0: x, _1: y - moveD};
 		}
 	});
-var _user$project$Main$randomPoint = A2(
-	_elm_lang$core$Random$pair,
-	A2(_elm_lang$core$Random$float, -50, 50),
-	A2(_elm_lang$core$Random$float, -50, 50));
+var _user$project$Main$randomPoint = function (m) {
+	return A2(
+		_elm_lang$core$Random$pair,
+		A2(_elm_lang$core$Random$float, ((0 - m.area.width) / 2) + 2, (m.area.depth / 2) - 2),
+		A2(_elm_lang$core$Random$float, ((0 - m.area.width) / 2) + 2, (m.area.depth / 2) - 2));
+};
 var _user$project$Main$init = {
 	ctor: '_Tuple2',
 	_0: {
@@ -11119,7 +11121,10 @@ var _user$project$Main$update = F2(
 				return {
 					ctor: '_Tuple2',
 					_0: model,
-					_1: A2(_elm_lang$core$Random$generate, _user$project$Snake$SpawnFood, _user$project$Main$randomPoint)
+					_1: A2(
+						_elm_lang$core$Random$generate,
+						_user$project$Snake$SpawnFood,
+						_user$project$Main$randomPoint(model))
 				};
 		}
 	});
