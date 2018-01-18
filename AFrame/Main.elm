@@ -210,14 +210,15 @@ generateFoodTile x y =
         , transparent True
         , opacity 1
         ][
-            animation
+        -- animation hat zu starken lags bei größerer Menge an Schlangenelementen und Essen gefübrt!
+           {- animation
             [attribute_ "rotation"
             , dur 10000
             , fill "forwards"
             , to "0 360 360"
             , AFrame.Animations.repeat "infinite"
             ]
-            []
+            []-}
         ]]
 
 generateFood: GameModel -> List (Html Msg)

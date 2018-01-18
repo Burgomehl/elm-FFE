@@ -10744,34 +10744,7 @@ var _user$project$Main$generateFoodTile = F2(
 							}
 						}
 					},
-					{
-						ctor: '::',
-						_0: A2(
-							_user$project$AFrame_Animations$animation,
-							{
-								ctor: '::',
-								_0: _user$project$AFrame_Animations$attribute_('rotation'),
-								_1: {
-									ctor: '::',
-									_0: _user$project$AFrame_Animations$dur(10000),
-									_1: {
-										ctor: '::',
-										_0: _user$project$AFrame_Animations$fill('forwards'),
-										_1: {
-											ctor: '::',
-											_0: _user$project$AFrame_Animations$to('0 360 360'),
-											_1: {
-												ctor: '::',
-												_0: _user$project$AFrame_Animations$repeat('infinite'),
-												_1: {ctor: '[]'}
-											}
-										}
-									}
-								}
-							},
-							{ctor: '[]'}),
-						_1: {ctor: '[]'}
-					}),
+					{ctor: '[]'}),
 				_1: {ctor: '[]'}
 			});
 	});
