@@ -4,16 +4,16 @@ import Keyboard exposing (..)
 
 type Msg =
     Next
+    |Start
+    |ToggleInfo
+    |ToggleFog
+    |ToggleSpeed
+    |ToggleStats
     |GeneratePosition
     |SpawnFood (Float, Float)
     |Key KeyCode
 
-
-
-type Model = Start
-            |Play GameModel
-
-type alias GameModel = {snake: Position, area: PlayArea, food: Position, nextMoveDir: Direction, pause: Bool}
+type alias Model = {snake: Position, area: PlayArea, food: Position, nextMoveDir: Direction, pause: Bool, infoDisplay: Bool}
 
 type alias Position = List (Float, Float)
 

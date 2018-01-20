@@ -9429,6 +9429,121 @@ var _elm_lang$html$Html_Attributes$classList = function (list) {
 };
 var _elm_lang$html$Html_Attributes$style = _elm_lang$virtual_dom$VirtualDom$style;
 
+var _elm_lang$html$Html_Events$keyCode = A2(_elm_lang$core$Json_Decode$field, 'keyCode', _elm_lang$core$Json_Decode$int);
+var _elm_lang$html$Html_Events$targetChecked = A2(
+	_elm_lang$core$Json_Decode$at,
+	{
+		ctor: '::',
+		_0: 'target',
+		_1: {
+			ctor: '::',
+			_0: 'checked',
+			_1: {ctor: '[]'}
+		}
+	},
+	_elm_lang$core$Json_Decode$bool);
+var _elm_lang$html$Html_Events$targetValue = A2(
+	_elm_lang$core$Json_Decode$at,
+	{
+		ctor: '::',
+		_0: 'target',
+		_1: {
+			ctor: '::',
+			_0: 'value',
+			_1: {ctor: '[]'}
+		}
+	},
+	_elm_lang$core$Json_Decode$string);
+var _elm_lang$html$Html_Events$defaultOptions = _elm_lang$virtual_dom$VirtualDom$defaultOptions;
+var _elm_lang$html$Html_Events$onWithOptions = _elm_lang$virtual_dom$VirtualDom$onWithOptions;
+var _elm_lang$html$Html_Events$on = _elm_lang$virtual_dom$VirtualDom$on;
+var _elm_lang$html$Html_Events$onFocus = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'focus',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onBlur = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'blur',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onSubmitOptions = _elm_lang$core$Native_Utils.update(
+	_elm_lang$html$Html_Events$defaultOptions,
+	{preventDefault: true});
+var _elm_lang$html$Html_Events$onSubmit = function (msg) {
+	return A3(
+		_elm_lang$html$Html_Events$onWithOptions,
+		'submit',
+		_elm_lang$html$Html_Events$onSubmitOptions,
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onCheck = function (tagger) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'change',
+		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$targetChecked));
+};
+var _elm_lang$html$Html_Events$onInput = function (tagger) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'input',
+		A2(_elm_lang$core$Json_Decode$map, tagger, _elm_lang$html$Html_Events$targetValue));
+};
+var _elm_lang$html$Html_Events$onMouseOut = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseout',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseOver = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseover',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseLeave = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseleave',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseEnter = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseenter',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseUp = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mouseup',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onMouseDown = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'mousedown',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onDoubleClick = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'dblclick',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$onClick = function (msg) {
+	return A2(
+		_elm_lang$html$Html_Events$on,
+		'click',
+		_elm_lang$core$Json_Decode$succeed(msg));
+};
+var _elm_lang$html$Html_Events$Options = F2(
+	function (a, b) {
+		return {stopPropagation: a, preventDefault: b};
+	});
+
 var _elm_lang$keyboard$Keyboard$onSelfMsg = F3(
 	function (router, _p0, state) {
 		var _p1 = _p0;
@@ -10071,6 +10186,39 @@ var _user$project$AFrame_Primitives_Attributes$vrModeUi = function (enabled) {
 	var attribstring = A2(_elm_lang$core$Basics_ops['++'], 'enabled: ', value);
 	return A2(_elm_lang$html$Html_Attributes$attribute, 'vm-mode-ui', attribstring);
 };
+var _user$project$AFrame_Primitives_Attributes$sound = function (value) {
+	return A2(_elm_lang$html$Html_Attributes$attribute, 'sound', value);
+};
+var _user$project$AFrame_Primitives_Attributes$volume = function (value) {
+	return A2(
+		_elm_lang$html$Html_Attributes$attribute,
+		'volume',
+		_elm_lang$core$Basics$toString(value));
+};
+var _user$project$AFrame_Primitives_Attributes$refDistance = function (value) {
+	return A2(
+		_elm_lang$html$Html_Attributes$attribute,
+		'refDistance',
+		_elm_lang$core$Basics$toString(value));
+};
+var _user$project$AFrame_Primitives_Attributes$loop = function (value) {
+	return A2(
+		_elm_lang$html$Html_Attributes$attribute,
+		'loop',
+		_elm_lang$core$Basics$toString(value));
+};
+var _user$project$AFrame_Primitives_Attributes$autoplay = function (value) {
+	return A2(
+		_elm_lang$html$Html_Attributes$attribute,
+		'autoplay',
+		_elm_lang$core$Basics$toString(value));
+};
+var _user$project$AFrame_Primitives_Attributes$stats = function (value) {
+	return A2(
+		_elm_lang$html$Html_Attributes$attribute,
+		'stats',
+		_elm_lang$core$Basics$toString(value));
+};
 var _user$project$AFrame_Primitives_Attributes$type_ = function (value) {
 	return A2(
 		_elm_lang$html$Html_Attributes$attribute,
@@ -10368,9 +10516,9 @@ var _user$project$AFrame_Primitives_Light$Hemisphere = {ctor: 'Hemisphere'};
 var _user$project$AFrame_Primitives_Light$Directional = {ctor: 'Directional'};
 var _user$project$AFrame_Primitives_Light$Ambient = {ctor: 'Ambient'};
 
-var _user$project$Snake$GameModel = F5(
-	function (a, b, c, d, e) {
-		return {snake: a, area: b, food: c, nextMoveDir: d, pause: e};
+var _user$project$Snake$Model = F6(
+	function (a, b, c, d, e, f) {
+		return {snake: a, area: b, food: c, nextMoveDir: d, pause: e, infoDisplay: f};
 	});
 var _user$project$Snake$PlayArea = F3(
 	function (a, b, c) {
@@ -10383,11 +10531,12 @@ var _user$project$Snake$SpawnFood = function (a) {
 	return {ctor: 'SpawnFood', _0: a};
 };
 var _user$project$Snake$GeneratePosition = {ctor: 'GeneratePosition'};
-var _user$project$Snake$Next = {ctor: 'Next'};
-var _user$project$Snake$Play = function (a) {
-	return {ctor: 'Play', _0: a};
-};
+var _user$project$Snake$ToggleStats = {ctor: 'ToggleStats'};
+var _user$project$Snake$ToggleSpeed = {ctor: 'ToggleSpeed'};
+var _user$project$Snake$ToggleFog = {ctor: 'ToggleFog'};
+var _user$project$Snake$ToggleInfo = {ctor: 'ToggleInfo'};
 var _user$project$Snake$Start = {ctor: 'Start'};
+var _user$project$Snake$Next = {ctor: 'Next'};
 var _user$project$Snake$S = {ctor: 'S'};
 var _user$project$Snake$W = {ctor: 'W'};
 var _user$project$Snake$E = {ctor: 'E'};
@@ -10546,53 +10695,162 @@ var _user$project$PlayArea$generateField = function (m) {
 	};
 };
 
-var _user$project$StartPage$generatePage = A2(
-	_elm_lang$html$Html$div,
-	{ctor: '[]'},
+var _user$project$StartPage$outerDiv = _elm_lang$html$Html_Attributes$style(
 	{
 		ctor: '::',
-		_0: A2(
-			_elm_lang$html$Html$div,
-			{ctor: '[]'},
-			{
-				ctor: '::',
-				_0: _elm_lang$html$Html$text('SnakeVR'),
-				_1: {ctor: '[]'}
-			}),
+		_0: {ctor: '_Tuple2', _0: 'padding', _1: '20px'},
 		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'textAlign', _1: 'center'},
+			_1: {ctor: '[]'}
+		}
+	});
+var _user$project$StartPage$innerDiv = _elm_lang$html$Html_Attributes$style(
+	{
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 'fontSize', _1: '16px'},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'width', _1: '200px'},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'margin', _1: '0 auto'},
+				_1: {ctor: '[]'}
+			}
+		}
+	});
+var _user$project$StartPage$infoText = function (m) {
+	return m.infoDisplay ? 'SnakeVR ist ein Spiel, in dem der Spieler den Kopf einer Schlange steuert. Das Ziel des Spiels ist es so viel wie möglich zu essen. Die Schlange darf sich dabei nicht selber essen und nicht in die Wand beißen.' : '';
+};
+var _user$project$StartPage$buttonDiv = _elm_lang$html$Html_Attributes$style(
+	{
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 'padding', _1: '1px'},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'position', _1: 'relative'},
+			_1: {ctor: '[]'}
+		}
+	});
+var _user$project$StartPage$buttonStyle = _elm_lang$html$Html_Attributes$style(
+	{
+		ctor: '::',
+		_0: {ctor: '_Tuple2', _0: 'borderRadius', _1: '25px'},
+		_1: {
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'border', _1: '2px solid black'},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'width', _1: '200px'},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'height', _1: '40px'},
+					_1: {ctor: '[]'}
+				}
+			}
+		}
+	});
+var _user$project$StartPage$menuStyle = function (value) {
+	return value ? _elm_lang$html$Html_Attributes$style(
+		{
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'backgroundColor', _1: 'grey'},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'position', _1: 'fixed'},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'left', _1: '200px'},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'top', _1: '100px'},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'right', _1: '200px'},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'bottom', _1: '100px'},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'zIndex', _1: '10000'},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'borderRadius', _1: '25px'},
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: 'border', _1: '4px solid black'},
+											_1: {
+												ctor: '::',
+												_0: {ctor: '_Tuple2', _0: 'textAlign', _1: 'center'},
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}) : _elm_lang$html$Html_Attributes$style(
+		{ctor: '[]'});
+};
+var _user$project$StartPage$generatePage = function (m) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _user$project$StartPage$menuStyle(m.pause),
+			_1: {ctor: '[]'}
+		},
+		{
 			ctor: '::',
 			_0: A2(
 				_elm_lang$html$Html$div,
-				{ctor: '[]'},
 				{
 					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$button,
-						{ctor: '[]'},
+					_0: _elm_lang$html$Html_Attributes$style(
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html$text('Einzelspieler'),
-							_1: {ctor: '[]'}
+							_0: {ctor: '_Tuple2', _0: 'padding', _1: '40px'},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'fontSize', _1: '48px'},
+								_1: {ctor: '[]'}
+							}
 						}),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text('SnakeVR'),
 					_1: {ctor: '[]'}
 				}),
 			_1: {
 				ctor: '::',
 				_0: A2(
 					_elm_lang$html$Html$div,
-					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _user$project$StartPage$buttonDiv,
+						_1: {ctor: '[]'}
+					},
 					{
 						ctor: '::',
 						_0: A2(
 							_elm_lang$html$Html$button,
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$disabled(true),
-								_1: {ctor: '[]'}
+								_0: _user$project$StartPage$buttonStyle,
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html_Events$onClick(_user$project$Snake$Start),
+									_1: {ctor: '[]'}
+								}
 							},
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html$text('Mehrspieler'),
+								_0: _elm_lang$html$Html$text('Start'),
 								_1: {ctor: '[]'}
 							}),
 						_1: {ctor: '[]'}
@@ -10601,15 +10859,23 @@ var _user$project$StartPage$generatePage = A2(
 					ctor: '::',
 					_0: A2(
 						_elm_lang$html$Html$div,
-						{ctor: '[]'},
+						{
+							ctor: '::',
+							_0: _user$project$StartPage$buttonDiv,
+							_1: {ctor: '[]'}
+						},
 						{
 							ctor: '::',
 							_0: A2(
 								_elm_lang$html$Html$button,
 								{
 									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$disabled(true),
-									_1: {ctor: '[]'}
+									_0: _user$project$StartPage$buttonStyle,
+									_1: {
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$disabled(true),
+										_1: {ctor: '[]'}
+									}
 								},
 								{
 									ctor: '::',
@@ -10622,29 +10888,184 @@ var _user$project$StartPage$generatePage = A2(
 						ctor: '::',
 						_0: A2(
 							_elm_lang$html$Html$div,
-							{ctor: '[]'},
+							{
+								ctor: '::',
+								_0: _user$project$StartPage$buttonDiv,
+								_1: {ctor: '[]'}
+							},
 							{
 								ctor: '::',
 								_0: A2(
 									_elm_lang$html$Html$button,
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$disabled(true),
-										_1: {ctor: '[]'}
+										_0: _user$project$StartPage$buttonStyle,
+										_1: {
+											ctor: '::',
+											_0: _elm_lang$html$Html_Attributes$disabled(true),
+											_1: {ctor: '[]'}
+										}
 									},
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html$text('Skin'),
+										_0: _elm_lang$html$Html$text('Mehrspieler?'),
 										_1: {ctor: '[]'}
 									}),
 								_1: {ctor: '[]'}
 							}),
-						_1: {ctor: '[]'}
+						_1: {
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$div,
+								{
+									ctor: '::',
+									_0: _user$project$StartPage$buttonDiv,
+									_1: {ctor: '[]'}
+								},
+								{
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$button,
+										{
+											ctor: '::',
+											_0: _user$project$StartPage$buttonStyle,
+											_1: {
+												ctor: '::',
+												_0: _elm_lang$html$Html_Events$onClick(_user$project$Snake$ToggleFog),
+												_1: {ctor: '[]'}
+											}
+										},
+										{
+											ctor: '::',
+											_0: _elm_lang$html$Html$text('Nebel an'),
+											_1: {ctor: '[]'}
+										}),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$div,
+									{
+										ctor: '::',
+										_0: _user$project$StartPage$buttonDiv,
+										_1: {ctor: '[]'}
+									},
+									{
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$button,
+											{
+												ctor: '::',
+												_0: _user$project$StartPage$buttonStyle,
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html_Events$onClick(_user$project$Snake$ToggleSpeed),
+													_1: {ctor: '[]'}
+												}
+											},
+											{
+												ctor: '::',
+												_0: _elm_lang$html$Html$text('Geschwindigkeit schnell'),
+												_1: {ctor: '[]'}
+											}),
+										_1: {ctor: '[]'}
+									}),
+								_1: {
+									ctor: '::',
+									_0: A2(
+										_elm_lang$html$Html$div,
+										{
+											ctor: '::',
+											_0: _user$project$StartPage$buttonDiv,
+											_1: {ctor: '[]'}
+										},
+										{
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$button,
+												{
+													ctor: '::',
+													_0: _user$project$StartPage$buttonStyle,
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Events$onClick(_user$project$Snake$ToggleStats),
+														_1: {ctor: '[]'}
+													}
+												},
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html$text('Performanceanzeige an'),
+													_1: {ctor: '[]'}
+												}),
+											_1: {ctor: '[]'}
+										}),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$div,
+											{
+												ctor: '::',
+												_0: _user$project$StartPage$buttonDiv,
+												_1: {ctor: '[]'}
+											},
+											{
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$button,
+													{
+														ctor: '::',
+														_0: _user$project$StartPage$buttonStyle,
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Events$onClick(_user$project$Snake$ToggleInfo),
+															_1: {ctor: '[]'}
+														}
+													},
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html$text('Info'),
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$div,
+												{
+													ctor: '::',
+													_0: _user$project$StartPage$outerDiv,
+													_1: {ctor: '[]'}
+												},
+												{
+													ctor: '::',
+													_0: A2(
+														_elm_lang$html$Html$div,
+														{
+															ctor: '::',
+															_0: _user$project$StartPage$innerDiv,
+															_1: {ctor: '[]'}
+														},
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html$text(
+																_user$project$StartPage$infoText(m)),
+															_1: {ctor: '[]'}
+														}),
+													_1: {ctor: '[]'}
+												}),
+											_1: {ctor: '[]'}
+										}
+									}
+								}
+							}
+						}
 					}
 				}
 			}
-		}
-	});
+		});
+};
 
 var _user$project$Main$getRotation = function (m) {
 	var _p0 = m.nextMoveDir;
@@ -10797,178 +11218,183 @@ var _user$project$Main$generateSnake = function (m) {
 		m.snake);
 };
 var _user$project$Main$view = function (model) {
-	var _p6 = model;
-	if (_p6.ctor === 'Start') {
-		return _user$project$StartPage$generatePage;
-	} else {
-		var _p7 = _p6._0;
-		return A2(
-			_user$project$AFrame$scene,
-			{ctor: '[]'},
-			A2(
-				_elm_lang$core$Basics_ops['++'],
-				{
+	return A2(
+		_user$project$AFrame$scene,
+		{
+			ctor: '::',
+			_0: A2(_elm_lang$html$Html_Attributes$attribute, 'stats', ''),
+			_1: {
+				ctor: '::',
+				_0: A2(_elm_lang$html$Html_Attributes$attribute, 'fog', 'type:exponential; color: #AAA; density: 0.05'),
+				_1: {ctor: '[]'}
+			}
+		},
+		A2(
+			_elm_lang$core$Basics_ops['++'],
+			{
+				ctor: '::',
+				_0: A2(
+					_user$project$AFrame$entity,
+					{
+						ctor: '::',
+						_0: _user$project$AFrame_Primitives_Attributes$id('snake'),
+						_1: {
+							ctor: '::',
+							_0: _user$project$AFrame_Primitives_Attributes$sound('src: url(bennySpielsound2.mp3); autoplay: true; loop: true'),
+							_1: {ctor: '[]'}
+						}
+					},
+					_user$project$Main$generateSnake(model)),
+				_1: {
 					ctor: '::',
 					_0: A2(
 						_user$project$AFrame$entity,
 						{
 							ctor: '::',
-							_0: _user$project$AFrame_Primitives_Attributes$id('snake'),
+							_0: _user$project$AFrame_Primitives_Attributes$id('food'),
 							_1: {ctor: '[]'}
 						},
-						_user$project$Main$generateSnake(_p7)),
+						_user$project$Main$generateFood(model)),
 					_1: {
 						ctor: '::',
 						_0: A2(
 							_user$project$AFrame$entity,
 							{
 								ctor: '::',
-								_0: _user$project$AFrame_Primitives_Attributes$id('food'),
+								_0: _user$project$AFrame_Primitives_Attributes$id('enviorment'),
 								_1: {ctor: '[]'}
 							},
-							_user$project$Main$generateFood(_p7)),
-						_1: {
-							ctor: '::',
-							_0: A2(
-								_user$project$AFrame$entity,
-								{
-									ctor: '::',
-									_0: _user$project$AFrame_Primitives_Attributes$id('enviorment'),
-									_1: {ctor: '[]'}
-								},
-								{
+							{
+								ctor: '::',
+								_0: A2(
+									_user$project$AFrame_Primitives$sky,
+									{
+										ctor: '::',
+										_0: _user$project$AFrame_Primitives_Attributes$src('https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/envmap/2294472375_24a3b8ef46_o.jpg'),
+										_1: {ctor: '[]'}
+									},
+									{ctor: '[]'}),
+								_1: {
 									ctor: '::',
 									_0: A2(
-										_user$project$AFrame_Primitives$sky,
+										_user$project$AFrame_Primitives_Light$light,
 										{
 											ctor: '::',
-											_0: _user$project$AFrame_Primitives_Attributes$src('https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/envmap/2294472375_24a3b8ef46_o.jpg'),
+											_0: _user$project$AFrame_Primitives_Light$type_(_user$project$AFrame_Primitives_Light$Hemisphere),
 											_1: {ctor: '[]'}
 										},
 										{ctor: '[]'}),
-									_1: {
-										ctor: '::',
-										_0: A2(
-											_user$project$AFrame_Primitives_Light$light,
-											{
-												ctor: '::',
-												_0: _user$project$AFrame_Primitives_Light$type_(_user$project$AFrame_Primitives_Light$Hemisphere),
-												_1: {ctor: '[]'}
-											},
-											{ctor: '[]'}),
-										_1: {ctor: '[]'}
-									}
-								}),
+									_1: {ctor: '[]'}
+								}
+							}),
+						_1: {
+							ctor: '::',
+							_0: _user$project$Main$setCamera(model),
 							_1: {
 								ctor: '::',
-								_0: _user$project$Main$setCamera(_p7),
+								_0: _user$project$StartPage$generatePage(model),
 								_1: {ctor: '[]'}
 							}
 						}
 					}
-				},
-				_user$project$PlayArea$generateField(_p7)));
-	}
+				}
+			},
+			_user$project$PlayArea$generateField(model)));
 };
 var _user$project$Main$subscriptions = function (model) {
-	var _p8 = model;
-	if (_p8.ctor === 'Start') {
-		return _elm_lang$keyboard$Keyboard$downs(_user$project$Snake$Key);
-	} else {
-		return _p8._0.pause ? _elm_lang$keyboard$Keyboard$downs(_user$project$Snake$Key) : _elm_lang$core$Platform_Sub$batch(
-			{
+	return model.pause ? _elm_lang$keyboard$Keyboard$downs(_user$project$Snake$Key) : _elm_lang$core$Platform_Sub$batch(
+		{
+			ctor: '::',
+			_0: _elm_lang$keyboard$Keyboard$downs(_user$project$Snake$Key),
+			_1: {
 				ctor: '::',
-				_0: _elm_lang$keyboard$Keyboard$downs(_user$project$Snake$Key),
+				_0: A2(
+					_elm_lang$core$Time$every,
+					2.0e-2 * _elm_lang$core$Time$second,
+					function (_p6) {
+						return _user$project$Snake$Next;
+					}),
 				_1: {
 					ctor: '::',
 					_0: A2(
 						_elm_lang$core$Time$every,
-						2.0e-2 * _elm_lang$core$Time$second,
-						function (_p9) {
-							return _user$project$Snake$Next;
+						_elm_lang$core$Time$second,
+						function (_p7) {
+							return _user$project$Snake$GeneratePosition;
 						}),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							_elm_lang$core$Time$every,
-							_elm_lang$core$Time$second,
-							function (_p10) {
-								return _user$project$Snake$GeneratePosition;
-							}),
-						_1: {ctor: '[]'}
-					}
+					_1: {ctor: '[]'}
 				}
-			});
-	}
+			}
+		});
 };
 var _user$project$Main$hitSnake = F2(
-	function (_p11, model) {
-		var _p12 = _p11;
+	function (_p8, model) {
+		var _p9 = _p8;
 		return _elm_lang$core$Native_Utils.cmp(
 			_elm_lang$core$List$length(
 				A2(
 					_elm_lang$core$List$filter,
-					function (_p13) {
-						var _p14 = _p13;
-						return _elm_lang$core$Native_Utils.eq(_p12._0, _p14._0) && _elm_lang$core$Native_Utils.eq(_p12._1, _p14._1);
+					function (_p10) {
+						var _p11 = _p10;
+						return _elm_lang$core$Native_Utils.eq(_p9._0, _p11._0) && _elm_lang$core$Native_Utils.eq(_p9._1, _p11._1);
 					},
 					model.snake)),
 			1) > 0;
 	});
 var _user$project$Main$leftField = F2(
-	function (_p15, model) {
-		var _p16 = _p15;
-		var _p18 = _p16._1;
-		var _p17 = _p16._0;
-		return !((_elm_lang$core$Native_Utils.cmp((model.area.width / 2) - 1, _p17) > -1) && ((_elm_lang$core$Native_Utils.cmp(_p17, ((0 - model.area.width) / 2) + 1) > -1) && ((_elm_lang$core$Native_Utils.cmp((model.area.depth / 2) - 1, _p18) > -1) && (_elm_lang$core$Native_Utils.cmp(_p18, ((0 - model.area.depth) / 2) + 1) > -1))));
+	function (_p12, model) {
+		var _p13 = _p12;
+		var _p15 = _p13._1;
+		var _p14 = _p13._0;
+		return !((_elm_lang$core$Native_Utils.cmp((model.area.width / 2) - 1, _p14) > -1) && ((_elm_lang$core$Native_Utils.cmp(_p14, ((0 - model.area.width) / 2) + 1) > -1) && ((_elm_lang$core$Native_Utils.cmp((model.area.depth / 2) - 1, _p15) > -1) && (_elm_lang$core$Native_Utils.cmp(_p15, ((0 - model.area.depth) / 2) + 1) > -1))));
 	});
 var _user$project$Main$isInRange = F2(
-	function (_p20, _p19) {
-		var _p21 = _p20;
-		var _p26 = _p21._1;
-		var _p25 = _p21._0;
-		var _p22 = _p19;
-		var _p24 = _p22._1;
-		var _p23 = _p22._0;
+	function (_p17, _p16) {
+		var _p18 = _p17;
+		var _p23 = _p18._1;
+		var _p22 = _p18._0;
+		var _p19 = _p16;
+		var _p21 = _p19._1;
+		var _p20 = _p19._0;
 		var range = 4;
-		return (_elm_lang$core$Native_Utils.cmp(_p23 + range, _p25) > 0) && ((_elm_lang$core$Native_Utils.cmp(_p25, _p23 - range) > 0) && ((_elm_lang$core$Native_Utils.cmp(_p24 + range, _p26) > 0) && (_elm_lang$core$Native_Utils.cmp(_p26, _p24 - range) > 0)));
+		return (_elm_lang$core$Native_Utils.cmp(_p20 + range, _p22) > 0) && ((_elm_lang$core$Native_Utils.cmp(_p22, _p20 - range) > 0) && ((_elm_lang$core$Native_Utils.cmp(_p21 + range, _p23) > 0) && (_elm_lang$core$Native_Utils.cmp(_p23, _p21 - range) > 0)));
 	});
 var _user$project$Main$eating = F2(
-	function (_p27, l) {
-		var _p28 = _p27;
+	function (_p24, l) {
+		var _p25 = _p24;
 		return _elm_lang$core$Native_Utils.cmp(
 			_elm_lang$core$List$length(
 				A2(
 					_elm_lang$core$List$filter,
-					function (_p29) {
-						var _p30 = _p29;
+					function (_p26) {
+						var _p27 = _p26;
 						return A2(
 							_user$project$Main$isInRange,
-							{ctor: '_Tuple2', _0: _p28._0, _1: _p28._1},
-							{ctor: '_Tuple2', _0: _p30._0, _1: _p30._1});
+							{ctor: '_Tuple2', _0: _p25._0, _1: _p25._1},
+							{ctor: '_Tuple2', _0: _p27._0, _1: _p27._1});
 					},
 					l)),
 			0) > 0;
 	});
 var _user$project$Main$removeFood = F2(
-	function (_p31, l) {
-		var _p32 = _p31;
+	function (_p28, l) {
+		var _p29 = _p28;
 		return A2(
 			_elm_lang$core$List$filter,
-			function (_p33) {
-				var _p34 = _p33;
+			function (_p30) {
+				var _p31 = _p30;
 				return !A2(
 					_user$project$Main$isInRange,
-					{ctor: '_Tuple2', _0: _p32._0, _1: _p32._1},
-					{ctor: '_Tuple2', _0: _p34._0, _1: _p34._1});
+					{ctor: '_Tuple2', _0: _p29._0, _1: _p29._1},
+					{ctor: '_Tuple2', _0: _p31._0, _1: _p31._1});
 			},
 			l);
 	});
 var _user$project$Main$nextPos = F3(
 	function (m, x, y) {
 		var moveD = 0.5;
-		var _p35 = m.nextMoveDir;
-		switch (_p35.ctor) {
+		var _p32 = m.nextMoveDir;
+		switch (_p32.ctor) {
 			case 'N':
 				return {ctor: '_Tuple2', _0: x + moveD, _1: y};
 			case 'E':
@@ -10979,59 +11405,6 @@ var _user$project$Main$nextPos = F3(
 				return {ctor: '_Tuple2', _0: x, _1: y - moveD};
 		}
 	});
-var _user$project$Main$calcNextPos = function (m) {
-	var _p36 = _elm_lang$core$List$head(m.snake);
-	if (_p36.ctor === 'Just') {
-		var _p38 = _p36._0._1;
-		var _p37 = _p36._0._0;
-		var pos = A3(_user$project$Main$nextPos, m, _p37, _p38);
-		return A2(
-			_user$project$Main$leftField,
-			{ctor: '_Tuple2', _0: _p37, _1: _p38},
-			m) ? {ctor: '_Tuple2', _0: _user$project$Snake$Start, _1: _elm_lang$core$Platform_Cmd$none} : (A2(
-			_user$project$Main$hitSnake,
-			{ctor: '_Tuple2', _0: _p37, _1: _p38},
-			m) ? {ctor: '_Tuple2', _0: _user$project$Snake$Start, _1: _elm_lang$core$Platform_Cmd$none} : (A2(
-			_user$project$Main$eating,
-			{ctor: '_Tuple2', _0: _p37, _1: _p38},
-			m.food) ? {
-			ctor: '_Tuple2',
-			_0: _user$project$Snake$Play(
-				_elm_lang$core$Native_Utils.update(
-					m,
-					{
-						snake: {ctor: '::', _0: pos, _1: m.snake},
-						food: A2(
-							_user$project$Main$removeFood,
-							{ctor: '_Tuple2', _0: _p37, _1: _p38},
-							m.food)
-					})),
-			_1: _elm_lang$core$Platform_Cmd$none
-		} : {
-			ctor: '_Tuple2',
-			_0: _user$project$Snake$Play(
-				_elm_lang$core$Native_Utils.update(
-					m,
-					{
-						snake: {
-							ctor: '::',
-							_0: A3(_user$project$Main$nextPos, m, _p37, _p38),
-							_1: A2(
-								_elm_lang$core$List$take,
-								_elm_lang$core$List$length(m.snake) - 1,
-								m.snake)
-						}
-					})),
-			_1: _elm_lang$core$Platform_Cmd$none
-		}));
-	} else {
-		return {
-			ctor: '_Tuple2',
-			_0: _user$project$Snake$Play(m),
-			_1: _elm_lang$core$Platform_Cmd$none
-		};
-	}
-};
 var _user$project$Main$randomPoint = function (m) {
 	return A2(
 		_elm_lang$core$Random$pair,
@@ -11071,165 +11444,206 @@ var _user$project$Main$startGame = {
 		}
 	},
 	nextMoveDir: _user$project$Snake$N,
-	pause: true
+	pause: true,
+	infoDisplay: false
+};
+var _user$project$Main$calcNextPos = function (m) {
+	var _p33 = _elm_lang$core$List$head(m.snake);
+	if (_p33.ctor === 'Just') {
+		var _p35 = _p33._0._1;
+		var _p34 = _p33._0._0;
+		var pos = A3(_user$project$Main$nextPos, m, _p34, _p35);
+		return A2(
+			_user$project$Main$leftField,
+			{ctor: '_Tuple2', _0: _p34, _1: _p35},
+			m) ? {ctor: '_Tuple2', _0: _user$project$Main$startGame, _1: _elm_lang$core$Platform_Cmd$none} : (A2(
+			_user$project$Main$hitSnake,
+			{ctor: '_Tuple2', _0: _p34, _1: _p35},
+			m) ? {ctor: '_Tuple2', _0: _user$project$Main$startGame, _1: _elm_lang$core$Platform_Cmd$none} : (A2(
+			_user$project$Main$eating,
+			{ctor: '_Tuple2', _0: _p34, _1: _p35},
+			m.food) ? {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Native_Utils.update(
+				m,
+				{
+					snake: {ctor: '::', _0: pos, _1: m.snake},
+					food: A2(
+						_user$project$Main$removeFood,
+						{ctor: '_Tuple2', _0: _p34, _1: _p35},
+						m.food)
+				}),
+			_1: _elm_lang$core$Platform_Cmd$none
+		} : {
+			ctor: '_Tuple2',
+			_0: _elm_lang$core$Native_Utils.update(
+				m,
+				{
+					snake: {
+						ctor: '::',
+						_0: A3(_user$project$Main$nextPos, m, _p34, _p35),
+						_1: A2(
+							_elm_lang$core$List$take,
+							_elm_lang$core$List$length(m.snake) - 1,
+							m.snake)
+					}
+				}),
+			_1: _elm_lang$core$Platform_Cmd$none
+		}));
+	} else {
+		return {ctor: '_Tuple2', _0: m, _1: _elm_lang$core$Platform_Cmd$none};
+	}
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		var _p39 = model;
-		if (_p39.ctor === 'Start') {
-			var _p40 = msg;
-			switch (_p40.ctor) {
-				case 'Key':
-					var _p41 = _p40._0;
-					if (_p41 === 32) {
-						return {
-							ctor: '_Tuple2',
-							_0: _user$project$Snake$Play(_user$project$Main$startGame),
-							_1: _elm_lang$core$Platform_Cmd$none
-						};
-					} else {
+		var _p36 = msg;
+		switch (_p36.ctor) {
+			case 'Key':
+				var _p37 = _p36._0;
+				switch (_p37) {
+					case 65:
+						var _p38 = model.nextMoveDir;
+						switch (_p38.ctor) {
+							case 'N':
+								return {
+									ctor: '_Tuple2',
+									_0: _elm_lang$core$Native_Utils.update(
+										model,
+										{nextMoveDir: _user$project$Snake$W}),
+									_1: _elm_lang$core$Platform_Cmd$none
+								};
+							case 'E':
+								return {
+									ctor: '_Tuple2',
+									_0: _elm_lang$core$Native_Utils.update(
+										model,
+										{nextMoveDir: _user$project$Snake$N}),
+									_1: _elm_lang$core$Platform_Cmd$none
+								};
+							case 'S':
+								return {
+									ctor: '_Tuple2',
+									_0: _elm_lang$core$Native_Utils.update(
+										model,
+										{nextMoveDir: _user$project$Snake$E}),
+									_1: _elm_lang$core$Platform_Cmd$none
+								};
+							default:
+								return {
+									ctor: '_Tuple2',
+									_0: _elm_lang$core$Native_Utils.update(
+										model,
+										{nextMoveDir: _user$project$Snake$S}),
+									_1: _elm_lang$core$Platform_Cmd$none
+								};
+						}
+					case 68:
+						var _p39 = model.nextMoveDir;
+						switch (_p39.ctor) {
+							case 'N':
+								return {
+									ctor: '_Tuple2',
+									_0: _elm_lang$core$Native_Utils.update(
+										model,
+										{nextMoveDir: _user$project$Snake$E}),
+									_1: _elm_lang$core$Platform_Cmd$none
+								};
+							case 'E':
+								return {
+									ctor: '_Tuple2',
+									_0: _elm_lang$core$Native_Utils.update(
+										model,
+										{nextMoveDir: _user$project$Snake$S}),
+									_1: _elm_lang$core$Platform_Cmd$none
+								};
+							case 'S':
+								return {
+									ctor: '_Tuple2',
+									_0: _elm_lang$core$Native_Utils.update(
+										model,
+										{nextMoveDir: _user$project$Snake$W}),
+									_1: _elm_lang$core$Platform_Cmd$none
+								};
+							default:
+								return {
+									ctor: '_Tuple2',
+									_0: _elm_lang$core$Native_Utils.update(
+										model,
+										{nextMoveDir: _user$project$Snake$N}),
+									_1: _elm_lang$core$Platform_Cmd$none
+								};
+						}
+					default:
 						return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-					}
-				case 'Next':
-					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-				case 'SpawnFood':
-					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-				default:
-					return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
-			}
-		} else {
-			var _p46 = _p39._0;
-			var _p42 = msg;
-			switch (_p42.ctor) {
-				case 'Key':
-					var _p43 = _p42._0;
-					switch (_p43) {
-						case 32:
-							return {
-								ctor: '_Tuple2',
-								_0: _user$project$Snake$Play(
-									_elm_lang$core$Native_Utils.update(
-										_p46,
-										{pause: !_p46.pause})),
-								_1: _elm_lang$core$Platform_Cmd$none
-							};
-						case 65:
-							var _p44 = _p46.nextMoveDir;
-							switch (_p44.ctor) {
-								case 'N':
-									return {
-										ctor: '_Tuple2',
-										_0: _user$project$Snake$Play(
-											_elm_lang$core$Native_Utils.update(
-												_p46,
-												{nextMoveDir: _user$project$Snake$W})),
-										_1: _elm_lang$core$Platform_Cmd$none
-									};
-								case 'E':
-									return {
-										ctor: '_Tuple2',
-										_0: _user$project$Snake$Play(
-											_elm_lang$core$Native_Utils.update(
-												_p46,
-												{nextMoveDir: _user$project$Snake$N})),
-										_1: _elm_lang$core$Platform_Cmd$none
-									};
-								case 'S':
-									return {
-										ctor: '_Tuple2',
-										_0: _user$project$Snake$Play(
-											_elm_lang$core$Native_Utils.update(
-												_p46,
-												{nextMoveDir: _user$project$Snake$E})),
-										_1: _elm_lang$core$Platform_Cmd$none
-									};
-								default:
-									return {
-										ctor: '_Tuple2',
-										_0: _user$project$Snake$Play(
-											_elm_lang$core$Native_Utils.update(
-												_p46,
-												{nextMoveDir: _user$project$Snake$S})),
-										_1: _elm_lang$core$Platform_Cmd$none
-									};
+				}
+			case 'Next':
+				return _user$project$Main$calcNextPos(model);
+			case 'SpawnFood':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{
+							food: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: _p36._0._0, _1: _p36._0._1},
+								_1: model.food
 							}
-						case 68:
-							var _p45 = _p46.nextMoveDir;
-							switch (_p45.ctor) {
-								case 'N':
-									return {
-										ctor: '_Tuple2',
-										_0: _user$project$Snake$Play(
-											_elm_lang$core$Native_Utils.update(
-												_p46,
-												{nextMoveDir: _user$project$Snake$E})),
-										_1: _elm_lang$core$Platform_Cmd$none
-									};
-								case 'E':
-									return {
-										ctor: '_Tuple2',
-										_0: _user$project$Snake$Play(
-											_elm_lang$core$Native_Utils.update(
-												_p46,
-												{nextMoveDir: _user$project$Snake$S})),
-										_1: _elm_lang$core$Platform_Cmd$none
-									};
-								case 'S':
-									return {
-										ctor: '_Tuple2',
-										_0: _user$project$Snake$Play(
-											_elm_lang$core$Native_Utils.update(
-												_p46,
-												{nextMoveDir: _user$project$Snake$W})),
-										_1: _elm_lang$core$Platform_Cmd$none
-									};
-								default:
-									return {
-										ctor: '_Tuple2',
-										_0: _user$project$Snake$Play(
-											_elm_lang$core$Native_Utils.update(
-												_p46,
-												{nextMoveDir: _user$project$Snake$N})),
-										_1: _elm_lang$core$Platform_Cmd$none
-									};
-							}
-						default:
-							return {
-								ctor: '_Tuple2',
-								_0: _user$project$Snake$Play(_p46),
-								_1: _elm_lang$core$Platform_Cmd$none
-							};
-					}
-				case 'Next':
-					return _user$project$Main$calcNextPos(_p46);
-				case 'SpawnFood':
-					return {
-						ctor: '_Tuple2',
-						_0: _user$project$Snake$Play(
-							_elm_lang$core$Native_Utils.update(
-								_p46,
-								{
-									food: {
-										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: _p42._0._0, _1: _p42._0._1},
-										_1: _p46.food
-									}
-								})),
-						_1: _elm_lang$core$Platform_Cmd$none
-					};
-				default:
-					return {
-						ctor: '_Tuple2',
-						_0: _user$project$Snake$Play(_p46),
-						_1: A2(
-							_elm_lang$core$Random$generate,
-							_user$project$Snake$SpawnFood,
-							_user$project$Main$randomPoint(_p46))
-					};
-			}
+						}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'GeneratePosition':
+				return {
+					ctor: '_Tuple2',
+					_0: model,
+					_1: A2(
+						_elm_lang$core$Random$generate,
+						_user$project$Snake$SpawnFood,
+						_user$project$Main$randomPoint(model))
+				};
+			case 'Start':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{pause: !model.pause}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'ToggleInfo':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{infoDisplay: !model.infoDisplay}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'ToggleFog':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{infoDisplay: !model.infoDisplay}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			case 'ToggleSpeed':
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{infoDisplay: !model.infoDisplay}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{infoDisplay: !model.infoDisplay}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
 		}
 	});
-var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Snake$Start, _1: _elm_lang$core$Platform_Cmd$none};
+var _user$project$Main$init = {ctor: '_Tuple2', _0: _user$project$Main$startGame, _1: _elm_lang$core$Platform_Cmd$none};
 var _user$project$Main$main = _elm_lang$html$Html$program(
 	{init: _user$project$Main$init, view: _user$project$Main$view, subscriptions: _user$project$Main$subscriptions, update: _user$project$Main$update})();
 
