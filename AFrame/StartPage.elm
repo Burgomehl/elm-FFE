@@ -53,6 +53,34 @@ outerDiv: Attribute msg
 outerDiv =
     style [("padding","20px"),("textAlign","center")]
 
+isFog: Model -> String
+isFog m =
+    if m.isFog then
+        "Nebel an"
+    else
+        "Nebel aus"
+
+isStats: Model -> String
+isStats m =
+    if m.isStats then
+        "Performanceanzeige an"
+    else
+        "Performanceanzeige aus"
+
+displaySpeed: Model -> String
+displaySpeed m =
+    case m.speed of
+        0 ->
+            "Geschwindigkeit sehr langsam"
+        1 ->
+            "Geschwindigkeit langsam"
+        2 ->
+            "Geschwindigkeit schnell"
+        3 ->
+            "Geschwindigkeit sehr schnell"
+        _ ->
+            "Speed Error "
+
 generatePage: Model -> Html Msg
 generatePage m =
                 div [menuStyle m.pause][
@@ -60,9 +88,9 @@ generatePage m =
                     ,div [buttonDiv] [button [buttonStyle, onClick Start][text "Start"]]
                     ,div [buttonDiv] [button [buttonStyle, disabled True][text "Musik aus"]]
                     ,div [buttonDiv] [button [buttonStyle, disabled True][text "Mehrspieler?"]]
-                    ,div [buttonDiv] [button [buttonStyle, onClick ToggleFog][text "Nebel an"]]
-                    ,div [buttonDiv] [button [buttonStyle, onClick ToggleSpeed][text "Geschwindigkeit schnell"]]
-                    ,div [buttonDiv] [button [buttonStyle, onClick ToggleStats][text "Performanceanzeige an"]]
+                    ,div [buttonDiv] [button [buttonStyle, onClick ToggleFog][text (isFog m)]]
+                    ,div [buttonDiv] [button [buttonStyle, onClick ToggleSpeed][text (displaySpeed m)]]
+                    ,div [buttonDiv] [button [buttonStyle, onClick ToggleStats][text (isStats m)]]
                     ,div [buttonDiv] [button [buttonStyle, onClick ToggleInfo][text "Info"]]
                     ,div [outerDiv] [div [innerDiv] [text (infoText m)]]
                 ]

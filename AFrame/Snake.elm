@@ -13,7 +13,7 @@ type Msg =
     |SpawnFood (Float, Float)
     |Key KeyCode
 
-type alias Model = {snake: Position, area: PlayArea, food: Position, nextMoveDir: Direction, pause: Bool, infoDisplay: Bool}
+type alias Model = {snake: Position, area: PlayArea, food: Position, nextMoveDir: Direction, pause: Bool, infoDisplay: Bool, isFog: Bool, isStats: Bool, speed: Int, points: Int}
 
 type alias Position = List (Float, Float)
 

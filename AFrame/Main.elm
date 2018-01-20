@@ -26,7 +26,7 @@ init =
 
 startGame: (Model)
 startGame =
-    {snake = [(2,2),(3,3),(4,4)], area = {width= 100, depth = 100, wallHeight = 15}, food=[(4,4), (8,8), (-4,-4), (-8,-8)], nextMoveDir = N, pause = True, infoDisplay = False}
+    {snake = [(2,2),(3,3),(4,4)], area = {width= 100, depth = 100, wallHeight = 15}, food=[(4,4), (8,8), (-4,-4), (-8,-8)], nextMoveDir = N, pause = True, infoDisplay = False, isFog = False, isStats = False, speed = 2, points = 0}
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -66,11 +66,11 @@ update msg model =
                 ToggleInfo ->
                     ({model | infoDisplay = not model.infoDisplay}, Cmd.none)
                 ToggleFog ->
-                    ({model | infoDisplay = not model.infoDisplay}, Cmd.none)
+                    ({model | isFog = not model.isFog}, Cmd.none)
                 ToggleSpeed ->
-                    ({model | infoDisplay = not model.infoDisplay}, Cmd.none)
+                    ({model | speed = ((model.speed+1)%4)}, Cmd.none)
                 ToggleStats ->
-                    ({model | infoDisplay = not model.infoDisplay}, Cmd.none)
+                    ({model | isStats = not model.isStats}, Cmd.none)
 
 randomPoint : Model -> Generator (Float,Float)
 randomPoint m =
@@ -132,7 +132,7 @@ calcNextPos m =
                             (startGame , Cmd.none)
                         else
                             if eating (x,y) m.food then
-                                ({m | snake = (pos::m.snake), food = removeFood (x,y) m.food},Cmd.none)
+                                ({m | snake = (pos::m.snake), food = removeFood (x,y) m.food, points = m.points+1},Cmd.none)
                             else
                                 ({m | snake = ((nextPos m x y)::List.take ((List.length m.snake)-1) m.snake)},Cmd.none)
                 Nothing ->
@@ -163,11 +163,29 @@ generateSnake: Model -> List (Html Msg)
 generateSnake m =
     List.map (\(x,y) -> (generateSphere x y)) m.snake
 
+appendFog: Model -> List (Attribute msg) -> List (Attribute msg)
+appendFog m l =
+            if m.isFog then
+                List.append [attribute "fog" "type:exponential; color: #AAA; density: 0.05"] l
+           else
+                l
+appendStats: Model -> List (Attribute msg) -> List (Attribute msg)
+appendStats m l =
+            if m.isStats then
+                List.append [attribute "stats" ""] l
+            else
+                l
+
+sceneOptions: Model -> List (Attribute msg)
+sceneOptions m =
+    []
+    |> appendFog m
+    |> appendStats m
 
 view : Model -> Html Msg
 view model =
                 scene
-                        [attribute "stats" "", attribute "fog" "type:exponential; color: #AAA; density: 0.05"]
+                        (sceneOptions model)
                         ([entity [id "snake", AFrame.Primitives.Attributes.sound "src: url(bennySpielsound2.mp3); autoplay: true; loop: true"] (generateSnake model)
                         , entity [id "food"] (generateFood model)
                         --, sound [id "sound", position 0 0 0, src "http://localhost:8000/AFrame/bennySpielsound2.mp3", autoplay True, loop True, refDistance 200, volume 50][]
@@ -176,7 +194,12 @@ view model =
                                                     ][], light [AFrame.Primitives.Light.type_ Hemisphere][]]
                         , setCamera model
                         , generatePage model
+                        , showPoints model
                         ]++(generateField model))
+
+showPoints: Model -> Html Msg
+showPoints m =
+    div [style [("top","10px"),("right","10px"),("zIndex","10000"),("position","fixed")]][text ("Punkte: "++(toString m.points))]
 
 main : Program Never Model Msg
 main =

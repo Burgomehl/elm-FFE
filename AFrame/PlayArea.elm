@@ -33,6 +33,7 @@ generateField m =
         , height m.area.depth
         , staticBody
         , src "https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/terrain/grasslight-big.jpg"
+        , AFrame.Primitives.Attributes.repeat "20 20"
         ]
         []]
     , (generateWall (0,0,-m.area.depth/2) (m.area.width,m.area.wallHeight,1))

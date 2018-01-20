@@ -10516,10 +10516,27 @@ var _user$project$AFrame_Primitives_Light$Hemisphere = {ctor: 'Hemisphere'};
 var _user$project$AFrame_Primitives_Light$Directional = {ctor: 'Directional'};
 var _user$project$AFrame_Primitives_Light$Ambient = {ctor: 'Ambient'};
 
-var _user$project$Snake$Model = F6(
-	function (a, b, c, d, e, f) {
-		return {snake: a, area: b, food: c, nextMoveDir: d, pause: e, infoDisplay: f};
-	});
+var _user$project$Snake$Model = function (a) {
+	return function (b) {
+		return function (c) {
+			return function (d) {
+				return function (e) {
+					return function (f) {
+						return function (g) {
+							return function (h) {
+								return function (i) {
+									return function (j) {
+										return {snake: a, area: b, food: c, nextMoveDir: d, pause: e, infoDisplay: f, isFog: g, isStats: h, speed: i, points: j};
+									};
+								};
+							};
+						};
+					};
+				};
+			};
+		};
+	};
+};
 var _user$project$Snake$PlayArea = F3(
 	function (a, b, c) {
 		return {width: a, depth: b, wallHeight: c};
@@ -10644,7 +10661,11 @@ var _user$project$PlayArea$generateField = function (m) {
 									_1: {
 										ctor: '::',
 										_0: _user$project$AFrame_Primitives_Attributes$src('https://raw.githubusercontent.com/aframevr/sample-assets/master/assets/images/terrain/grasslight-big.jpg'),
-										_1: {ctor: '[]'}
+										_1: {
+											ctor: '::',
+											_0: _user$project$AFrame_Primitives_Attributes$repeat('20 20'),
+											_1: {ctor: '[]'}
+										}
 									}
 								}
 							}
@@ -10695,6 +10716,27 @@ var _user$project$PlayArea$generateField = function (m) {
 	};
 };
 
+var _user$project$StartPage$displaySpeed = function (m) {
+	var _p0 = m.speed;
+	switch (_p0) {
+		case 0:
+			return 'Geschwindigkeit sehr langsam';
+		case 1:
+			return 'Geschwindigkeit langsam';
+		case 2:
+			return 'Geschwindigkeit schnell';
+		case 3:
+			return 'Geschwindigkeit sehr schnell';
+		default:
+			return 'Speed Error ';
+	}
+};
+var _user$project$StartPage$isStats = function (m) {
+	return m.isStats ? 'Performanceanzeige an' : 'Performanceanzeige aus';
+};
+var _user$project$StartPage$isFog = function (m) {
+	return m.isFog ? 'Nebel an' : 'Nebel aus';
+};
 var _user$project$StartPage$outerDiv = _elm_lang$html$Html_Attributes$style(
 	{
 		ctor: '::',
@@ -10937,7 +10979,8 @@ var _user$project$StartPage$generatePage = function (m) {
 										},
 										{
 											ctor: '::',
-											_0: _elm_lang$html$Html$text('Nebel an'),
+											_0: _elm_lang$html$Html$text(
+												_user$project$StartPage$isFog(m)),
 											_1: {ctor: '[]'}
 										}),
 									_1: {ctor: '[]'}
@@ -10966,7 +11009,8 @@ var _user$project$StartPage$generatePage = function (m) {
 											},
 											{
 												ctor: '::',
-												_0: _elm_lang$html$Html$text('Geschwindigkeit schnell'),
+												_0: _elm_lang$html$Html$text(
+													_user$project$StartPage$displaySpeed(m)),
 												_1: {ctor: '[]'}
 											}),
 										_1: {ctor: '[]'}
@@ -10995,7 +11039,8 @@ var _user$project$StartPage$generatePage = function (m) {
 												},
 												{
 													ctor: '::',
-													_0: _elm_lang$html$Html$text('Performanceanzeige an'),
+													_0: _elm_lang$html$Html$text(
+														_user$project$StartPage$isStats(m)),
 													_1: {ctor: '[]'}
 												}),
 											_1: {ctor: '[]'}
@@ -11178,6 +11223,72 @@ var _user$project$Main$generateFood = function (m) {
 		},
 		m.food);
 };
+var _user$project$Main$showPoints = function (m) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$style(
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'top', _1: '10px'},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'right', _1: '10px'},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'zIndex', _1: '10000'},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'position', _1: 'fixed'},
+								_1: {ctor: '[]'}
+							}
+						}
+					}
+				}),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'Punkte: ',
+					_elm_lang$core$Basics$toString(m.points))),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$Main$appendStats = F2(
+	function (m, l) {
+		return m.isStats ? A2(
+			_elm_lang$core$List$append,
+			{
+				ctor: '::',
+				_0: A2(_elm_lang$html$Html_Attributes$attribute, 'stats', ''),
+				_1: {ctor: '[]'}
+			},
+			l) : l;
+	});
+var _user$project$Main$appendFog = F2(
+	function (m, l) {
+		return m.isFog ? A2(
+			_elm_lang$core$List$append,
+			{
+				ctor: '::',
+				_0: A2(_elm_lang$html$Html_Attributes$attribute, 'fog', 'type:exponential; color: #AAA; density: 0.05'),
+				_1: {ctor: '[]'}
+			},
+			l) : l;
+	});
+var _user$project$Main$sceneOptions = function (m) {
+	return A2(
+		_user$project$Main$appendStats,
+		m,
+		A2(
+			_user$project$Main$appendFog,
+			m,
+			{ctor: '[]'}));
+};
 var _user$project$Main$generateSphere = F2(
 	function (x, y) {
 		return A2(
@@ -11220,15 +11331,7 @@ var _user$project$Main$generateSnake = function (m) {
 var _user$project$Main$view = function (model) {
 	return A2(
 		_user$project$AFrame$scene,
-		{
-			ctor: '::',
-			_0: A2(_elm_lang$html$Html_Attributes$attribute, 'stats', ''),
-			_1: {
-				ctor: '::',
-				_0: A2(_elm_lang$html$Html_Attributes$attribute, 'fog', 'type:exponential; color: #AAA; density: 0.05'),
-				_1: {ctor: '[]'}
-			}
-		},
+		_user$project$Main$sceneOptions(model),
 		A2(
 			_elm_lang$core$Basics_ops['++'],
 			{
@@ -11293,7 +11396,11 @@ var _user$project$Main$view = function (model) {
 							_1: {
 								ctor: '::',
 								_0: _user$project$StartPage$generatePage(model),
-								_1: {ctor: '[]'}
+								_1: {
+									ctor: '::',
+									_0: _user$project$Main$showPoints(model),
+									_1: {ctor: '[]'}
+								}
 							}
 						}
 					}
@@ -11445,7 +11552,11 @@ var _user$project$Main$startGame = {
 	},
 	nextMoveDir: _user$project$Snake$N,
 	pause: true,
-	infoDisplay: false
+	infoDisplay: false,
+	isFog: true,
+	isStats: false,
+	speed: 2,
+	points: 0
 };
 var _user$project$Main$calcNextPos = function (m) {
 	var _p33 = _elm_lang$core$List$head(m.snake);
@@ -11471,7 +11582,8 @@ var _user$project$Main$calcNextPos = function (m) {
 					food: A2(
 						_user$project$Main$removeFood,
 						{ctor: '_Tuple2', _0: _p34, _1: _p35},
-						m.food)
+						m.food),
+					points: m.points + 1
 				}),
 			_1: _elm_lang$core$Platform_Cmd$none
 		} : {
@@ -11622,7 +11734,7 @@ var _user$project$Main$update = F2(
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
-						{infoDisplay: !model.infoDisplay}),
+						{isFog: !model.isFog}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'ToggleSpeed':
@@ -11630,7 +11742,9 @@ var _user$project$Main$update = F2(
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
-						{infoDisplay: !model.infoDisplay}),
+						{
+							speed: A2(_elm_lang$core$Basics_ops['%'], model.speed + 1, 4)
+						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			default:
@@ -11638,7 +11752,7 @@ var _user$project$Main$update = F2(
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
-						{infoDisplay: !model.infoDisplay}),
+						{isStats: !model.isStats}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 		}
