@@ -26,7 +26,7 @@ init =
 
 startGame: (Model)
 startGame =
-    {snake = [(2,2),(3,3),(4,4)], area = {width= 100, depth = 100, wallHeight = 15}, food=[(4,4), (8,8), (-4,-4), (-8,-8)], nextMoveDir = N, pause = True, infoDisplay = False, isFog = False, isStats = False, speed = 2, points = 0}
+    {snake = [(2,2),(3,3),(4,4)], area = {width= 100, depth = 100, wallHeight = 15}, food=[(4,4), (8,8), (-4,-4), (-8,-8)], nextMoveDir = N, pause = True, infoDisplay = False, isFog = False, isStats = False, speed = 2, cameraEnabled = True, points = 0}
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -71,6 +71,8 @@ update msg model =
                     ({model | speed = ((model.speed+1)%4)}, Cmd.none)
                 ToggleStats ->
                     ({model | isStats = not model.isStats}, Cmd.none)
+                ToggleCameraMode ->
+                    ({model | cameraEnabled = not model.cameraEnabled}, Cmd.none)
 
 randomPoint : Model -> Generator (Float,Float)
 randomPoint m =
@@ -138,6 +140,20 @@ calcNextPos m =
                 Nothing ->
                     (m, Cmd.none)
 
+calcSpeed: Model -> Float
+calcSpeed m =
+    case m.speed of
+        0 ->
+            0.08
+        1 ->
+            0.04
+        2 ->
+            0.02
+        3 ->
+            0.01
+        _ ->
+            1
+
 subscriptions : Model -> Sub Msg
 subscriptions model =
             if model.pause then
@@ -145,7 +161,7 @@ subscriptions model =
             else
                 Sub.batch
                     [Keyboard.downs Key
-                    , Time.every ( 0.02*Time.second) (\_-> Next)
+                    , Time.every ( (calcSpeed model)*Time.second) (\_-> Next) --ursprünglich 0.02
                     , Time.every ( Time.second) (\_ -> GeneratePosition)
                     ]
 
@@ -197,10 +213,6 @@ view model =
                         , showPoints model
                         ]++(generateField model))
 
-showPoints: Model -> Html Msg
-showPoints m =
-    div [style [("top","10px"),("right","10px"),("zIndex","10000"),("position","fixed")]][text ("Punkte: "++(toString m.points))]
-
 main : Program Never Model Msg
 main =
     Html.program
@@ -240,25 +252,34 @@ getRotation: Model -> Attribute Msg
 getRotation m =
     case m.nextMoveDir of
         N->
-            rotation 90 0 0
+            rotation 0 270 0
         E ->
-            rotation 180 0 0
+            rotation 0 180 0
         S ->
-            rotation 270 0 0
+            rotation 0 90 0
         W ->
             rotation 0 0 0
+
+isCameraEnabled: Model -> List (Attribute Msg)
+isCameraEnabled m =
+    if m.cameraEnabled then
+        [lookControlsEnabled True]
+    else
+        [
+        lookControlsEnabled False
+        ,getRotation m
+        ]
 
 setCamera: Model -> Html Msg
 setCamera m =
     case List.head m.snake of
         Just (x,y) ->
-            camera [
-                --lookControlsEnabled False
+            camera ([
                 wasdControlsEnabled False
                 , position x 1.25 y
                 , rotation 0 0 90
                 , kinematicBody
-            ][]
+            ]++isCameraEnabled m)[]
         Nothing ->
             camera [
                 position 0 1.25 0

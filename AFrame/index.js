@@ -10526,7 +10526,9 @@ var _user$project$Snake$Model = function (a) {
 							return function (h) {
 								return function (i) {
 									return function (j) {
-										return {snake: a, area: b, food: c, nextMoveDir: d, pause: e, infoDisplay: f, isFog: g, isStats: h, speed: i, points: j};
+										return function (k) {
+											return {snake: a, area: b, food: c, nextMoveDir: d, pause: e, infoDisplay: f, isFog: g, isStats: h, speed: i, cameraEnabled: j, points: k};
+										};
 									};
 								};
 							};
@@ -10548,6 +10550,7 @@ var _user$project$Snake$SpawnFood = function (a) {
 	return {ctor: 'SpawnFood', _0: a};
 };
 var _user$project$Snake$GeneratePosition = {ctor: 'GeneratePosition'};
+var _user$project$Snake$ToggleCameraMode = {ctor: 'ToggleCameraMode'};
 var _user$project$Snake$ToggleStats = {ctor: 'ToggleStats'};
 var _user$project$Snake$ToggleSpeed = {ctor: 'ToggleSpeed'};
 var _user$project$Snake$ToggleFog = {ctor: 'ToggleFog'};
@@ -10716,6 +10719,78 @@ var _user$project$PlayArea$generateField = function (m) {
 	};
 };
 
+var _user$project$StartPage$showPoints = function (m) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$style(
+				{
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'top', _1: '10px'},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'right', _1: '10px'},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: 'zIndex', _1: '10000'},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: 'position', _1: 'fixed'},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: '-webkit-user-select', _1: 'none'},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: '-moz-user-select', _1: 'none'},
+										_1: {
+											ctor: '::',
+											_0: {ctor: '_Tuple2', _0: '-ms-user-select', _1: 'none'},
+											_1: {
+												ctor: '::',
+												_0: {ctor: '_Tuple2', _0: 'user-select', _1: 'none'},
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html$text(
+				A2(
+					_elm_lang$core$Basics_ops['++'],
+					'Punkte: ',
+					_elm_lang$core$Basics$toString(m.points))),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$StartPage$transparentDiv = function (value) {
+	return value ? _elm_lang$html$Html_Attributes$style(
+		{
+			ctor: '::',
+			_0: {ctor: '_Tuple2', _0: 'position', _1: 'fixed'},
+			_1: {
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'width', _1: '100%'},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'height', _1: '100%'},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'zIndex', _1: '9999'},
+						_1: {ctor: '[]'}
+					}
+				}
+			}
+		}) : _elm_lang$html$Html_Attributes$style(
+		{ctor: '[]'});
+};
 var _user$project$StartPage$displaySpeed = function (m) {
 	var _p0 = m.speed;
 	switch (_p0) {
@@ -10730,6 +10805,9 @@ var _user$project$StartPage$displaySpeed = function (m) {
 		default:
 			return 'Speed Error ';
 	}
+};
+var _user$project$StartPage$isCameraMode = function (m) {
+	return m.cameraEnabled ? 'Kamerasteuerung an' : 'Kamerasteuerung aus';
 };
 var _user$project$StartPage$isStats = function (m) {
 	return m.isStats ? 'Performanceanzeige an' : 'Performanceanzeige aus';
@@ -10787,7 +10865,23 @@ var _user$project$StartPage$buttonStyle = _elm_lang$html$Html_Attributes$style(
 				_1: {
 					ctor: '::',
 					_0: {ctor: '_Tuple2', _0: 'height', _1: '40px'},
-					_1: {ctor: '[]'}
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: '-webkit-user-select', _1: 'none'},
+						_1: {
+							ctor: '::',
+							_0: {ctor: '_Tuple2', _0: '-moz-user-select', _1: 'none'},
+							_1: {
+								ctor: '::',
+								_0: {ctor: '_Tuple2', _0: '-ms-user-select', _1: 'none'},
+								_1: {
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'user-select', _1: 'none'},
+									_1: {ctor: '[]'}
+								}
+							}
+						}
+					}
 				}
 			}
 		}
@@ -10842,7 +10936,7 @@ var _user$project$StartPage$generatePage = function (m) {
 		_elm_lang$html$Html$div,
 		{
 			ctor: '::',
-			_0: _user$project$StartPage$menuStyle(m.pause),
+			_0: _user$project$StartPage$transparentDiv(m.pause),
 			_1: {ctor: '[]'}
 		},
 		{
@@ -10851,79 +10945,30 @@ var _user$project$StartPage$generatePage = function (m) {
 				_elm_lang$html$Html$div,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$style(
-						{
-							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'padding', _1: '40px'},
-							_1: {
-								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'fontSize', _1: '48px'},
-								_1: {ctor: '[]'}
-							}
-						}),
+					_0: _user$project$StartPage$menuStyle(m.pause),
 					_1: {ctor: '[]'}
 				},
 				{
-					ctor: '::',
-					_0: _elm_lang$html$Html$text('SnakeVR'),
-					_1: {ctor: '[]'}
-				}),
-			_1: {
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$div,
-					{
-						ctor: '::',
-						_0: _user$project$StartPage$buttonDiv,
-						_1: {ctor: '[]'}
-					},
-					{
-						ctor: '::',
-						_0: A2(
-							_elm_lang$html$Html$button,
-							{
-								ctor: '::',
-								_0: _user$project$StartPage$buttonStyle,
-								_1: {
-									ctor: '::',
-									_0: _elm_lang$html$Html_Events$onClick(_user$project$Snake$Start),
-									_1: {ctor: '[]'}
-								}
-							},
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html$text('Start'),
-								_1: {ctor: '[]'}
-							}),
-						_1: {ctor: '[]'}
-					}),
-				_1: {
 					ctor: '::',
 					_0: A2(
 						_elm_lang$html$Html$div,
 						{
 							ctor: '::',
-							_0: _user$project$StartPage$buttonDiv,
+							_0: _elm_lang$html$Html_Attributes$style(
+								{
+									ctor: '::',
+									_0: {ctor: '_Tuple2', _0: 'padding', _1: '40px'},
+									_1: {
+										ctor: '::',
+										_0: {ctor: '_Tuple2', _0: 'fontSize', _1: '48px'},
+										_1: {ctor: '[]'}
+									}
+								}),
 							_1: {ctor: '[]'}
 						},
 						{
 							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$button,
-								{
-									ctor: '::',
-									_0: _user$project$StartPage$buttonStyle,
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$disabled(true),
-										_1: {ctor: '[]'}
-									}
-								},
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html$text('Musik aus'),
-									_1: {ctor: '[]'}
-								}),
+							_0: _elm_lang$html$Html$text('SnakeVR'),
 							_1: {ctor: '[]'}
 						}),
 					_1: {
@@ -10944,13 +10989,13 @@ var _user$project$StartPage$generatePage = function (m) {
 										_0: _user$project$StartPage$buttonStyle,
 										_1: {
 											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$disabled(true),
+											_0: _elm_lang$html$Html_Events$onClick(_user$project$Snake$Start),
 											_1: {ctor: '[]'}
 										}
 									},
 									{
 										ctor: '::',
-										_0: _elm_lang$html$Html$text('Mehrspieler?'),
+										_0: _elm_lang$html$Html$text('Start'),
 										_1: {ctor: '[]'}
 									}),
 								_1: {ctor: '[]'}
@@ -10973,14 +11018,13 @@ var _user$project$StartPage$generatePage = function (m) {
 											_0: _user$project$StartPage$buttonStyle,
 											_1: {
 												ctor: '::',
-												_0: _elm_lang$html$Html_Events$onClick(_user$project$Snake$ToggleFog),
+												_0: _elm_lang$html$Html_Attributes$disabled(true),
 												_1: {ctor: '[]'}
 											}
 										},
 										{
 											ctor: '::',
-											_0: _elm_lang$html$Html$text(
-												_user$project$StartPage$isFog(m)),
+											_0: _elm_lang$html$Html$text('Musik aus'),
 											_1: {ctor: '[]'}
 										}),
 									_1: {ctor: '[]'}
@@ -11003,14 +11047,13 @@ var _user$project$StartPage$generatePage = function (m) {
 												_0: _user$project$StartPage$buttonStyle,
 												_1: {
 													ctor: '::',
-													_0: _elm_lang$html$Html_Events$onClick(_user$project$Snake$ToggleSpeed),
+													_0: _elm_lang$html$Html_Attributes$disabled(true),
 													_1: {ctor: '[]'}
 												}
 											},
 											{
 												ctor: '::',
-												_0: _elm_lang$html$Html$text(
-													_user$project$StartPage$displaySpeed(m)),
+												_0: _elm_lang$html$Html$text('Mehrspieler?'),
 												_1: {ctor: '[]'}
 											}),
 										_1: {ctor: '[]'}
@@ -11033,14 +11076,14 @@ var _user$project$StartPage$generatePage = function (m) {
 													_0: _user$project$StartPage$buttonStyle,
 													_1: {
 														ctor: '::',
-														_0: _elm_lang$html$Html_Events$onClick(_user$project$Snake$ToggleStats),
+														_0: _elm_lang$html$Html_Events$onClick(_user$project$Snake$ToggleFog),
 														_1: {ctor: '[]'}
 													}
 												},
 												{
 													ctor: '::',
 													_0: _elm_lang$html$Html$text(
-														_user$project$StartPage$isStats(m)),
+														_user$project$StartPage$isFog(m)),
 													_1: {ctor: '[]'}
 												}),
 											_1: {ctor: '[]'}
@@ -11063,13 +11106,14 @@ var _user$project$StartPage$generatePage = function (m) {
 														_0: _user$project$StartPage$buttonStyle,
 														_1: {
 															ctor: '::',
-															_0: _elm_lang$html$Html_Events$onClick(_user$project$Snake$ToggleInfo),
+															_0: _elm_lang$html$Html_Events$onClick(_user$project$Snake$ToggleSpeed),
 															_1: {ctor: '[]'}
 														}
 													},
 													{
 														ctor: '::',
-														_0: _elm_lang$html$Html$text('Info'),
+														_0: _elm_lang$html$Html$text(
+															_user$project$StartPage$displaySpeed(m)),
 														_1: {ctor: '[]'}
 													}),
 												_1: {ctor: '[]'}
@@ -11080,35 +11124,127 @@ var _user$project$StartPage$generatePage = function (m) {
 												_elm_lang$html$Html$div,
 												{
 													ctor: '::',
-													_0: _user$project$StartPage$outerDiv,
+													_0: _user$project$StartPage$buttonDiv,
 													_1: {ctor: '[]'}
 												},
 												{
 													ctor: '::',
 													_0: A2(
-														_elm_lang$html$Html$div,
+														_elm_lang$html$Html$button,
 														{
 															ctor: '::',
-															_0: _user$project$StartPage$innerDiv,
-															_1: {ctor: '[]'}
+															_0: _user$project$StartPage$buttonStyle,
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Events$onClick(_user$project$Snake$ToggleStats),
+																_1: {ctor: '[]'}
+															}
 														},
 														{
 															ctor: '::',
 															_0: _elm_lang$html$Html$text(
-																_user$project$StartPage$infoText(m)),
+																_user$project$StartPage$isStats(m)),
 															_1: {ctor: '[]'}
 														}),
 													_1: {ctor: '[]'}
 												}),
-											_1: {ctor: '[]'}
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$div,
+													{
+														ctor: '::',
+														_0: _user$project$StartPage$buttonDiv,
+														_1: {ctor: '[]'}
+													},
+													{
+														ctor: '::',
+														_0: A2(
+															_elm_lang$html$Html$button,
+															{
+																ctor: '::',
+																_0: _user$project$StartPage$buttonStyle,
+																_1: {
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Events$onClick(_user$project$Snake$ToggleCameraMode),
+																	_1: {ctor: '[]'}
+																}
+															},
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html$text(
+																	_user$project$StartPage$isCameraMode(m)),
+																_1: {ctor: '[]'}
+															}),
+														_1: {ctor: '[]'}
+													}),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_elm_lang$html$Html$div,
+														{
+															ctor: '::',
+															_0: _user$project$StartPage$buttonDiv,
+															_1: {ctor: '[]'}
+														},
+														{
+															ctor: '::',
+															_0: A2(
+																_elm_lang$html$Html$button,
+																{
+																	ctor: '::',
+																	_0: _user$project$StartPage$buttonStyle,
+																	_1: {
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Events$onClick(_user$project$Snake$ToggleInfo),
+																		_1: {ctor: '[]'}
+																	}
+																},
+																{
+																	ctor: '::',
+																	_0: _elm_lang$html$Html$text('Info'),
+																	_1: {ctor: '[]'}
+																}),
+															_1: {ctor: '[]'}
+														}),
+													_1: {
+														ctor: '::',
+														_0: A2(
+															_elm_lang$html$Html$div,
+															{
+																ctor: '::',
+																_0: _user$project$StartPage$outerDiv,
+																_1: {ctor: '[]'}
+															},
+															{
+																ctor: '::',
+																_0: A2(
+																	_elm_lang$html$Html$div,
+																	{
+																		ctor: '::',
+																		_0: _user$project$StartPage$innerDiv,
+																		_1: {ctor: '[]'}
+																	},
+																	{
+																		ctor: '::',
+																		_0: _elm_lang$html$Html$text(
+																			_user$project$StartPage$infoText(m)),
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {ctor: '[]'}
+															}),
+														_1: {ctor: '[]'}
+													}
+												}
+											}
 										}
 									}
 								}
 							}
 						}
 					}
-				}
-			}
+				}),
+			_1: {ctor: '[]'}
 		});
 };
 
@@ -11116,37 +11252,55 @@ var _user$project$Main$getRotation = function (m) {
 	var _p0 = m.nextMoveDir;
 	switch (_p0.ctor) {
 		case 'N':
-			return A3(_user$project$AFrame_Primitives_Attributes$rotation, 90, 0, 0);
+			return A3(_user$project$AFrame_Primitives_Attributes$rotation, 0, 270, 0);
 		case 'E':
-			return A3(_user$project$AFrame_Primitives_Attributes$rotation, 180, 0, 0);
+			return A3(_user$project$AFrame_Primitives_Attributes$rotation, 0, 180, 0);
 		case 'S':
-			return A3(_user$project$AFrame_Primitives_Attributes$rotation, 270, 0, 0);
+			return A3(_user$project$AFrame_Primitives_Attributes$rotation, 0, 90, 0);
 		default:
 			return A3(_user$project$AFrame_Primitives_Attributes$rotation, 0, 0, 0);
 	}
+};
+var _user$project$Main$isCameraEnabled = function (m) {
+	return m.cameraEnabled ? {
+		ctor: '::',
+		_0: _user$project$AFrame_Primitives_Camera$lookControlsEnabled(true),
+		_1: {ctor: '[]'}
+	} : {
+		ctor: '::',
+		_0: _user$project$AFrame_Primitives_Camera$lookControlsEnabled(false),
+		_1: {
+			ctor: '::',
+			_0: _user$project$Main$getRotation(m),
+			_1: {ctor: '[]'}
+		}
+	};
 };
 var _user$project$Main$setCamera = function (m) {
 	var _p1 = _elm_lang$core$List$head(m.snake);
 	if (_p1.ctor === 'Just') {
 		return A2(
 			_user$project$AFrame_Primitives_Camera$camera,
-			{
-				ctor: '::',
-				_0: _user$project$AFrame_Primitives_Camera$wasdControlsEnabled(false),
-				_1: {
+			A2(
+				_elm_lang$core$Basics_ops['++'],
+				{
 					ctor: '::',
-					_0: A3(_user$project$AFrame_Primitives_Attributes$position, _p1._0._0, 1.25, _p1._0._1),
+					_0: _user$project$AFrame_Primitives_Camera$wasdControlsEnabled(false),
 					_1: {
 						ctor: '::',
-						_0: A3(_user$project$AFrame_Primitives_Attributes$rotation, 0, 0, 90),
+						_0: A3(_user$project$AFrame_Primitives_Attributes$position, _p1._0._0, 1.25, _p1._0._1),
 						_1: {
 							ctor: '::',
-							_0: _user$project$AFrame_Extra_Physics$kinematicBody,
-							_1: {ctor: '[]'}
+							_0: A3(_user$project$AFrame_Primitives_Attributes$rotation, 0, 0, 90),
+							_1: {
+								ctor: '::',
+								_0: _user$project$AFrame_Extra_Physics$kinematicBody,
+								_1: {ctor: '[]'}
+							}
 						}
 					}
-				}
-			},
+				},
+				_user$project$Main$isCameraEnabled(m)),
 			{ctor: '[]'});
 	} else {
 		return A2(
@@ -11222,41 +11376,6 @@ var _user$project$Main$generateFood = function (m) {
 			return A2(_user$project$Main$generateFoodTile, _p3._0, _p3._1);
 		},
 		m.food);
-};
-var _user$project$Main$showPoints = function (m) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$style(
-				{
-					ctor: '::',
-					_0: {ctor: '_Tuple2', _0: 'top', _1: '10px'},
-					_1: {
-						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: 'right', _1: '10px'},
-						_1: {
-							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'zIndex', _1: '10000'},
-							_1: {
-								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'position', _1: 'fixed'},
-								_1: {ctor: '[]'}
-							}
-						}
-					}
-				}),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html$text(
-				A2(
-					_elm_lang$core$Basics_ops['++'],
-					'Punkte: ',
-					_elm_lang$core$Basics$toString(m.points))),
-			_1: {ctor: '[]'}
-		});
 };
 var _user$project$Main$appendStats = F2(
 	function (m, l) {
@@ -11398,7 +11517,7 @@ var _user$project$Main$view = function (model) {
 								_0: _user$project$StartPage$generatePage(model),
 								_1: {
 									ctor: '::',
-									_0: _user$project$Main$showPoints(model),
+									_0: _user$project$StartPage$showPoints(model),
 									_1: {ctor: '[]'}
 								}
 							}
@@ -11407,6 +11526,21 @@ var _user$project$Main$view = function (model) {
 				}
 			},
 			_user$project$PlayArea$generateField(model)));
+};
+var _user$project$Main$calcSpeed = function (m) {
+	var _p6 = m.speed;
+	switch (_p6) {
+		case 0:
+			return 8.0e-2;
+		case 1:
+			return 4.0e-2;
+		case 2:
+			return 2.0e-2;
+		case 3:
+			return 1.0e-2;
+		default:
+			return 1;
+	}
 };
 var _user$project$Main$subscriptions = function (model) {
 	return model.pause ? _elm_lang$keyboard$Keyboard$downs(_user$project$Snake$Key) : _elm_lang$core$Platform_Sub$batch(
@@ -11417,8 +11551,8 @@ var _user$project$Main$subscriptions = function (model) {
 				ctor: '::',
 				_0: A2(
 					_elm_lang$core$Time$every,
-					2.0e-2 * _elm_lang$core$Time$second,
-					function (_p6) {
+					_user$project$Main$calcSpeed(model) * _elm_lang$core$Time$second,
+					function (_p7) {
 						return _user$project$Snake$Next;
 					}),
 				_1: {
@@ -11426,7 +11560,7 @@ var _user$project$Main$subscriptions = function (model) {
 					_0: A2(
 						_elm_lang$core$Time$every,
 						_elm_lang$core$Time$second,
-						function (_p7) {
+						function (_p8) {
 							return _user$project$Snake$GeneratePosition;
 						}),
 					_1: {ctor: '[]'}
@@ -11435,73 +11569,73 @@ var _user$project$Main$subscriptions = function (model) {
 		});
 };
 var _user$project$Main$hitSnake = F2(
-	function (_p8, model) {
-		var _p9 = _p8;
+	function (_p9, model) {
+		var _p10 = _p9;
 		return _elm_lang$core$Native_Utils.cmp(
 			_elm_lang$core$List$length(
 				A2(
 					_elm_lang$core$List$filter,
-					function (_p10) {
-						var _p11 = _p10;
-						return _elm_lang$core$Native_Utils.eq(_p9._0, _p11._0) && _elm_lang$core$Native_Utils.eq(_p9._1, _p11._1);
+					function (_p11) {
+						var _p12 = _p11;
+						return _elm_lang$core$Native_Utils.eq(_p10._0, _p12._0) && _elm_lang$core$Native_Utils.eq(_p10._1, _p12._1);
 					},
 					model.snake)),
 			1) > 0;
 	});
 var _user$project$Main$leftField = F2(
-	function (_p12, model) {
-		var _p13 = _p12;
-		var _p15 = _p13._1;
-		var _p14 = _p13._0;
-		return !((_elm_lang$core$Native_Utils.cmp((model.area.width / 2) - 1, _p14) > -1) && ((_elm_lang$core$Native_Utils.cmp(_p14, ((0 - model.area.width) / 2) + 1) > -1) && ((_elm_lang$core$Native_Utils.cmp((model.area.depth / 2) - 1, _p15) > -1) && (_elm_lang$core$Native_Utils.cmp(_p15, ((0 - model.area.depth) / 2) + 1) > -1))));
+	function (_p13, model) {
+		var _p14 = _p13;
+		var _p16 = _p14._1;
+		var _p15 = _p14._0;
+		return !((_elm_lang$core$Native_Utils.cmp((model.area.width / 2) - 1, _p15) > -1) && ((_elm_lang$core$Native_Utils.cmp(_p15, ((0 - model.area.width) / 2) + 1) > -1) && ((_elm_lang$core$Native_Utils.cmp((model.area.depth / 2) - 1, _p16) > -1) && (_elm_lang$core$Native_Utils.cmp(_p16, ((0 - model.area.depth) / 2) + 1) > -1))));
 	});
 var _user$project$Main$isInRange = F2(
-	function (_p17, _p16) {
-		var _p18 = _p17;
-		var _p23 = _p18._1;
-		var _p22 = _p18._0;
-		var _p19 = _p16;
-		var _p21 = _p19._1;
-		var _p20 = _p19._0;
+	function (_p18, _p17) {
+		var _p19 = _p18;
+		var _p24 = _p19._1;
+		var _p23 = _p19._0;
+		var _p20 = _p17;
+		var _p22 = _p20._1;
+		var _p21 = _p20._0;
 		var range = 4;
-		return (_elm_lang$core$Native_Utils.cmp(_p20 + range, _p22) > 0) && ((_elm_lang$core$Native_Utils.cmp(_p22, _p20 - range) > 0) && ((_elm_lang$core$Native_Utils.cmp(_p21 + range, _p23) > 0) && (_elm_lang$core$Native_Utils.cmp(_p23, _p21 - range) > 0)));
+		return (_elm_lang$core$Native_Utils.cmp(_p21 + range, _p23) > 0) && ((_elm_lang$core$Native_Utils.cmp(_p23, _p21 - range) > 0) && ((_elm_lang$core$Native_Utils.cmp(_p22 + range, _p24) > 0) && (_elm_lang$core$Native_Utils.cmp(_p24, _p22 - range) > 0)));
 	});
 var _user$project$Main$eating = F2(
-	function (_p24, l) {
-		var _p25 = _p24;
+	function (_p25, l) {
+		var _p26 = _p25;
 		return _elm_lang$core$Native_Utils.cmp(
 			_elm_lang$core$List$length(
 				A2(
 					_elm_lang$core$List$filter,
-					function (_p26) {
-						var _p27 = _p26;
+					function (_p27) {
+						var _p28 = _p27;
 						return A2(
 							_user$project$Main$isInRange,
-							{ctor: '_Tuple2', _0: _p25._0, _1: _p25._1},
-							{ctor: '_Tuple2', _0: _p27._0, _1: _p27._1});
+							{ctor: '_Tuple2', _0: _p26._0, _1: _p26._1},
+							{ctor: '_Tuple2', _0: _p28._0, _1: _p28._1});
 					},
 					l)),
 			0) > 0;
 	});
 var _user$project$Main$removeFood = F2(
-	function (_p28, l) {
-		var _p29 = _p28;
+	function (_p29, l) {
+		var _p30 = _p29;
 		return A2(
 			_elm_lang$core$List$filter,
-			function (_p30) {
-				var _p31 = _p30;
+			function (_p31) {
+				var _p32 = _p31;
 				return !A2(
 					_user$project$Main$isInRange,
-					{ctor: '_Tuple2', _0: _p29._0, _1: _p29._1},
-					{ctor: '_Tuple2', _0: _p31._0, _1: _p31._1});
+					{ctor: '_Tuple2', _0: _p30._0, _1: _p30._1},
+					{ctor: '_Tuple2', _0: _p32._0, _1: _p32._1});
 			},
 			l);
 	});
 var _user$project$Main$nextPos = F3(
 	function (m, x, y) {
 		var moveD = 0.5;
-		var _p32 = m.nextMoveDir;
-		switch (_p32.ctor) {
+		var _p33 = m.nextMoveDir;
+		switch (_p33.ctor) {
 			case 'N':
 				return {ctor: '_Tuple2', _0: x + moveD, _1: y};
 			case 'E':
@@ -11553,26 +11687,27 @@ var _user$project$Main$startGame = {
 	nextMoveDir: _user$project$Snake$N,
 	pause: true,
 	infoDisplay: false,
-	isFog: true,
+	isFog: false,
 	isStats: false,
 	speed: 2,
+	cameraEnabled: true,
 	points: 0
 };
 var _user$project$Main$calcNextPos = function (m) {
-	var _p33 = _elm_lang$core$List$head(m.snake);
-	if (_p33.ctor === 'Just') {
-		var _p35 = _p33._0._1;
-		var _p34 = _p33._0._0;
-		var pos = A3(_user$project$Main$nextPos, m, _p34, _p35);
+	var _p34 = _elm_lang$core$List$head(m.snake);
+	if (_p34.ctor === 'Just') {
+		var _p36 = _p34._0._1;
+		var _p35 = _p34._0._0;
+		var pos = A3(_user$project$Main$nextPos, m, _p35, _p36);
 		return A2(
 			_user$project$Main$leftField,
-			{ctor: '_Tuple2', _0: _p34, _1: _p35},
+			{ctor: '_Tuple2', _0: _p35, _1: _p36},
 			m) ? {ctor: '_Tuple2', _0: _user$project$Main$startGame, _1: _elm_lang$core$Platform_Cmd$none} : (A2(
 			_user$project$Main$hitSnake,
-			{ctor: '_Tuple2', _0: _p34, _1: _p35},
+			{ctor: '_Tuple2', _0: _p35, _1: _p36},
 			m) ? {ctor: '_Tuple2', _0: _user$project$Main$startGame, _1: _elm_lang$core$Platform_Cmd$none} : (A2(
 			_user$project$Main$eating,
-			{ctor: '_Tuple2', _0: _p34, _1: _p35},
+			{ctor: '_Tuple2', _0: _p35, _1: _p36},
 			m.food) ? {
 			ctor: '_Tuple2',
 			_0: _elm_lang$core$Native_Utils.update(
@@ -11581,7 +11716,7 @@ var _user$project$Main$calcNextPos = function (m) {
 					snake: {ctor: '::', _0: pos, _1: m.snake},
 					food: A2(
 						_user$project$Main$removeFood,
-						{ctor: '_Tuple2', _0: _p34, _1: _p35},
+						{ctor: '_Tuple2', _0: _p35, _1: _p36},
 						m.food),
 					points: m.points + 1
 				}),
@@ -11593,7 +11728,7 @@ var _user$project$Main$calcNextPos = function (m) {
 				{
 					snake: {
 						ctor: '::',
-						_0: A3(_user$project$Main$nextPos, m, _p34, _p35),
+						_0: A3(_user$project$Main$nextPos, m, _p35, _p36),
 						_1: A2(
 							_elm_lang$core$List$take,
 							_elm_lang$core$List$length(m.snake) - 1,
@@ -11608,14 +11743,14 @@ var _user$project$Main$calcNextPos = function (m) {
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		var _p36 = msg;
-		switch (_p36.ctor) {
+		var _p37 = msg;
+		switch (_p37.ctor) {
 			case 'Key':
-				var _p37 = _p36._0;
-				switch (_p37) {
+				var _p38 = _p37._0;
+				switch (_p38) {
 					case 65:
-						var _p38 = model.nextMoveDir;
-						switch (_p38.ctor) {
+						var _p39 = model.nextMoveDir;
+						switch (_p39.ctor) {
 							case 'N':
 								return {
 									ctor: '_Tuple2',
@@ -11650,8 +11785,8 @@ var _user$project$Main$update = F2(
 								};
 						}
 					case 68:
-						var _p39 = model.nextMoveDir;
-						switch (_p39.ctor) {
+						var _p40 = model.nextMoveDir;
+						switch (_p40.ctor) {
 							case 'N':
 								return {
 									ctor: '_Tuple2',
@@ -11698,7 +11833,7 @@ var _user$project$Main$update = F2(
 						{
 							food: {
 								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: _p36._0._0, _1: _p36._0._1},
+								_0: {ctor: '_Tuple2', _0: _p37._0._0, _1: _p37._0._1},
 								_1: model.food
 							}
 						}),
@@ -11747,12 +11882,20 @@ var _user$project$Main$update = F2(
 						}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
-			default:
+			case 'ToggleStats':
 				return {
 					ctor: '_Tuple2',
 					_0: _elm_lang$core$Native_Utils.update(
 						model,
 						{isStats: !model.isStats}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			default:
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{cameraEnabled: !model.cameraEnabled}),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 		}

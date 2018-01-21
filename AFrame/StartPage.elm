@@ -30,6 +30,10 @@ buttonStyle =
                 ,("border","2px solid black")
                 ,("width","200px")
                 ,("height","40px")
+                ,("-webkit-user-select","none")
+                ,("-moz-user-select","none")
+                ,("-ms-user-select","none")
+                ,("user-select","none")
                 ]
 
 buttonDiv: Attribute msg
@@ -67,6 +71,13 @@ isStats m =
     else
         "Performanceanzeige aus"
 
+isCameraMode: Model -> String
+isCameraMode m =
+    if m.cameraEnabled then
+        "Kamerasteuerung an"
+    else
+        "Kamerasteuerung aus"
+
 displaySpeed: Model -> String
 displaySpeed m =
     case m.speed of
@@ -81,8 +92,20 @@ displaySpeed m =
         _ ->
             "Speed Error "
 
+transparentDiv:Bool -> Attribute msg
+transparentDiv value =
+                   if value then
+                       style [("position","fixed")
+                                ,("width","100%")
+                                ,("height","100%")
+                                ,("zIndex","9999")
+                                ]
+                   else
+                       style []
+
 generatePage: Model -> Html Msg
 generatePage m =
+            div [transparentDiv m.pause][
                 div [menuStyle m.pause][
                     div [style [("padding","40px"),("fontSize","48px")]][text "SnakeVR"]
                     ,div [buttonDiv] [button [buttonStyle, onClick Start][text "Start"]]
@@ -91,6 +114,20 @@ generatePage m =
                     ,div [buttonDiv] [button [buttonStyle, onClick ToggleFog][text (isFog m)]]
                     ,div [buttonDiv] [button [buttonStyle, onClick ToggleSpeed][text (displaySpeed m)]]
                     ,div [buttonDiv] [button [buttonStyle, onClick ToggleStats][text (isStats m)]]
+                    ,div [buttonDiv] [button [buttonStyle, onClick ToggleCameraMode][text (isCameraMode m)]]
                     ,div [buttonDiv] [button [buttonStyle, onClick ToggleInfo][text "Info"]]
                     ,div [outerDiv] [div [innerDiv] [text (infoText m)]]
                 ]
+            ]
+
+showPoints: Model -> Html Msg
+showPoints m =
+    div [style [("top","10px")
+                ,("right","10px")
+                ,("zIndex","10000")
+                ,("position","fixed")
+                ,("-webkit-user-select","none")
+                ,("-moz-user-select","none")
+                ,("-ms-user-select","none")
+                ,("user-select","none")
+                ]][text ("Punkte: "++(toString m.points))]
